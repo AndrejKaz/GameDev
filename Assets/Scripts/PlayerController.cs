@@ -45,28 +45,24 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             movementInput.x -= 1;
         if (Input.GetKey(KeyCode.D))
-            movementInput.x += 1;
-            
-        // Normalize diagonal movement
-        if (movementInput.magnitude > 1)
-            movementInput.Normalize();
+            movementInput.x += 1;   
     }
 
     private void Movement()
     {
         currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : speed;
         
-        //Clanker
+        //Make sure there is no inverse movement when looking with the camera
         if (movementInput.magnitude > 0)
         {
-            // Get the forward direction relative to where the character is facing
+            //Get the forward direction relative to where the character is facing
             Vector3 forward = transform.forward;
             Vector3 right = transform.right;
             
-            // Make movement relative to character's rotation
+            //Make movement relative to character's rotation
             Vector3 moveDirection = (forward * movementInput.z + right * movementInput.x).normalized;
             
-            // Apply movement
+            //Apply movement
             Vector3 targetVelocity = moveDirection * currentSpeed;
             
             rg.linearVelocity = targetVelocity;
@@ -86,7 +82,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, horizontalRotation, 0);
 
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -45f, 45f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -30f, 45f);
 
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }

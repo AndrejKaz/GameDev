@@ -5,14 +5,18 @@ TagManager:
   serializedVersion: 3
   tags:
   - Water
+  - Enemy
+  - Dude
+  - Ground
+  - TargetPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 
