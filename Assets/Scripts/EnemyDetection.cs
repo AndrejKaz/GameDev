@@ -9,17 +9,12 @@ public class EnemyDetection : MonoBehaviour
     private GameObject[] targetPoints;
     private int index = 0;
 
-    /*[===Scrpit references===]*/
-    
-
-
     void Start()
     {
         rg.freezeRotation = true;
         targetPoints = GameObject.FindGameObjectsWithTag("TargetPoint");
-    
     }
-    
+
     void FixedUpdate()
     {
         if(index != 6) Move();

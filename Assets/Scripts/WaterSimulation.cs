@@ -2,89 +2,82 @@ using UnityEngine;
 
 namespace LowPolyWater
 {
+    [RequireComponent(typeof(MeshFilter))]
     public class LowPolyWater : MonoBehaviour
     {
-        /*[===Wave properties===]*/
-        private float waveHeight = 0.3f;
-        private float waveFrequency = 0.3f;
-        private float waveLength = 1f;
-        private Vector3 waveOriginPosition = new Vector3(0f,0f,0f);
+        /* ================= Wave Settings ================= */
+        [Header("Wave Settings")]
+        [SerializeField] private float waveHeight = 0.3f;
+        [SerializeField] private float waveFrequency = 0.3f;
+        [SerializeField] private float waveLength = 1f;
+        [SerializeField] private Vector3 waveOriginPosition = Vector3.zero;
 
-        /*[===Water mesh and GameObject===]*/
-        [SerializeField] MeshFilter meshFilter;
-        GameObject water;
-        Mesh mesh;
-        Vector3[] vertices;
+        /* ================= Mesh Data ================= */
+        private Mesh mesh;
+        private Vector3[] vertices;
+        private Vector3[] baseVertices;
 
-        private void Start()
+        void Start()
         {
-            water = GameObject.FindWithTag("Water");
+            MeshFilter meshFilter = GetComponent<MeshFilter>();
+            mesh = meshFilter.mesh; // runtime instance (IMPORTANT)
 
-            if(water != null)
-            {
-                meshFilter = GetComponent<MeshFilter>();
-                CreateMeshLowPoly(meshFilter);
-            }
+            CreateLowPolyMesh();
+
+            vertices = mesh.vertices;
+            baseVertices = mesh.vertices.Clone() as Vector3[];
         }
 
         void Update()
         {
             GenerateWaves();
         }
-        
-        MeshFilter CreateMeshLowPoly(MeshFilter mf)
+
+        /* ================= Low Poly Mesh ================= */
+        void CreateLowPolyMesh()
         {
-            mesh = mf.mesh;
-
-            //Get the original vertices of the gameobject's mesh
             Vector3[] originalVertices = mesh.vertices;
+            int[] originalTriangles = mesh.triangles;
 
-            //Get the list of triangle indices of the gameobject's mesh
-            int[] triangles = mesh.triangles;
+            Vector3[] newVertices = new Vector3[originalTriangles.Length];
+            int[] newTriangles = new int[originalTriangles.Length];
 
-            //Create a vector array for new vertices 
-            Vector3[] vertices = new Vector3[triangles.Length];
-            
-            //Assign vertices to create triangles out of the mesh
-            for (int i = 0; i < triangles.Length; i++)
+            for (int i = 0; i < originalTriangles.Length; i++)
             {
-                vertices[i] = originalVertices[triangles[i]];
-                triangles[i] = i;
+                newVertices[i] = originalVertices[originalTriangles[i]];
+                newTriangles[i] = i;
             }
 
-            //Update the gameobject's mesh with new vertices
-            mesh.vertices = vertices;
-            mesh.SetTriangles(triangles, 0);
-            
-            // Assign the new mesh to the MeshFilter
-            mf.mesh = mesh;
-            this.vertices = mesh.vertices;
+            mesh.Clear();
+            mesh.vertices = newVertices;
+            mesh.triangles = newTriangles;
 
-            return mf;
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
         }
 
+        /* ================= Wave Generation ================= */
         void GenerateWaves()
         {
             for (int i = 0; i < vertices.Length; i++)
             {
-                Vector3 v = vertices[i];
+                Vector3 v = baseVertices[i];
 
-                //Initially set the wave height to 0
-                v.y = 0.0f;
-
-                //Get the distance between wave origin position and the current vertex
-                float distance = Vector3.Distance(v, waveOriginPosition);
+                Vector3 worldPos = transform.TransformPoint(v);
+                float distance = Vector3.Distance(worldPos, waveOriginPosition);
                 distance = (distance % waveLength) / waveLength;
 
-                //Oscilate the wave height via sine to create a wave effect
-                v.y = waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency + (Mathf.PI * 2.0f * distance));
-                
-                //Update the vertex
+                v.y += waveHeight * Mathf.Sin(
+                    Time.time * Mathf.PI * 2f * waveFrequency +
+                    Mathf.PI * 2f * distance
+                );
+
                 vertices[i] = v;
             }
 
-            //Update the mesh properties
             mesh.vertices = vertices;
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
         }
     }
 }

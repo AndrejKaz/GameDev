@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
-public class DetectionWall : MonoBehaviour
+public class ZoneDetection : MonoBehaviour
 {
-    private Collider wallCollider;
+    public EnemyDetection enemyDetection;
     public bool inZone = false;
+    public bool enemyTeritory = false;
 
-    void Awake()
-    {
-        wallCollider = GetComponent<Collider>();
-        wallCollider.isTrigger = true;
+    void Start()
+    {   
+        //Get the game object bcs otherwise it will assign it null
+        GameObject enemy = GameObject.FindWithTag("Enemy");
+        if(enemy != null)
+            enemyDetection = enemy.GetComponent<EnemyDetection>();
+        else Debug.LogWarning("Enemy not found!");
     }
 
     void OnTriggerEnter(Collider other)
@@ -25,7 +30,21 @@ public class DetectionWall : MonoBehaviour
         if (other.CompareTag("Dude")) 
         {
             inZone = false;
+            enemyTeritory = true;
             print("Player exited the zone" + inZone);
         }
+    }
+
+    void StartChase()
+    {
+        if(!inZone && enemyTeritory)
+        {
+            print("Enemy speed is: " + enemyDetection.speed);
+        }
+    }
+
+    void Update()
+    {
+        StartChase();
     }
 }
