@@ -1,30 +1,29 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyDetection : MonoBehaviour
 {
+    /*[===Enemy movement===]*/
     public Rigidbody rg;
     public float speed = 5.0f;
-
     private GameObject[] targetPoints;
     private int index = 0;
+
+    /*[===Scrpit references===]*/
+    
+
 
     void Start()
     {
         rg.freezeRotation = true;
         targetPoints = GameObject.FindGameObjectsWithTag("TargetPoint");
-
+    
     }
-
+    
     void FixedUpdate()
     {
-        if(index != 4)
-        {
-            Move();
-        }
-        else
-        {
-            index = 0;
-        }   
+        if(index != 6) Move();
+        else index = 0;
     }
 
     void Move()
@@ -37,10 +36,7 @@ public class EnemyDetection : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("TargetPoint"))
-        {
-            index++;
-        }
+        if (collision.gameObject.CompareTag("TargetPoint")) index++;
     }
 
 }

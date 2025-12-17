@@ -4,14 +4,14 @@ namespace LowPolyWater
 {
     public class LowPolyWater : MonoBehaviour
     {
-        public float waveHeight = 0.3f;
-        public float waveFrequency = 0.3f;
-        public float waveLength = 0.5f;
+        /*[===Wave properties===]*/
+        private float waveHeight = 0.3f;
+        private float waveFrequency = 0.3f;
+        private float waveLength = 1f;
+        private Vector3 waveOriginPosition = new Vector3(0f,0f,0f);
 
-        //Position where the waves originate from
-        public Vector3 waveOriginPosition = new Vector3(0.0f, 0.0f, 0.0f);
-
-        MeshFilter meshFilter;
+        /*[===Water mesh and GameObject===]*/
+        [SerializeField] MeshFilter meshFilter;
         GameObject water;
         Mesh mesh;
         Vector3[] vertices;
@@ -23,15 +23,18 @@ namespace LowPolyWater
             if(water != null)
             {
                 meshFilter = GetComponent<MeshFilter>();
+                CreateMeshLowPoly(meshFilter);
             }
+        }
 
-
-            CreateMeshLowPoly(meshFilter);
+        void Update()
+        {
+            GenerateWaves();
         }
         
         MeshFilter CreateMeshLowPoly(MeshFilter mf)
         {
-            mesh = mf.sharedMesh;
+            mesh = mf.mesh;
 
             //Get the original vertices of the gameobject's mesh
             Vector3[] originalVertices = mesh.vertices;
@@ -52,19 +55,14 @@ namespace LowPolyWater
             //Update the gameobject's mesh with new vertices
             mesh.vertices = vertices;
             mesh.SetTriangles(triangles, 0);
-            mesh.RecalculateBounds();
-            mesh.RecalculateNormals();
+            
+            // Assign the new mesh to the MeshFilter
+            mf.mesh = mesh;
             this.vertices = mesh.vertices;
 
             return mf;
         }
-        
-        void Update()
-        {
-            GenerateWaves();
-        }
 
-    
         void GenerateWaves()
         {
             for (int i = 0; i < vertices.Length; i++)
@@ -79,8 +77,7 @@ namespace LowPolyWater
                 distance = (distance % waveLength) / waveLength;
 
                 //Oscilate the wave height via sine to create a wave effect
-                v.y = waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency
-                + (Mathf.PI * 2.0f * distance));
+                v.y = waveHeight * Mathf.Sin(Time.time * Mathf.PI * 2.0f * waveFrequency + (Mathf.PI * 2.0f * distance));
                 
                 //Update the vertex
                 vertices[i] = v;
@@ -88,9 +85,6 @@ namespace LowPolyWater
 
             //Update the mesh properties
             mesh.vertices = vertices;
-            mesh.RecalculateNormals();
-            mesh.MarkDynamic();
-            meshFilter.mesh = mesh;
         }
     }
 }
