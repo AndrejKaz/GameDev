@@ -3,14 +3,24 @@ using UnityEngine.Rendering;
 
 public class ZoneDetection : MonoBehaviour
 {
+    //Script references
     public EnemyDetection enemyDetection;
+    public PlayerController playerController;
+
+    //Player and enemy variables
+    private Vector3 playerPos = new Vector3(0f,0f,0f);
+    private GameObject enemy;
+    private float enemyChaseSpeed = 0f;
+
+    //Check if the player is in the zone
     public bool inZone = false;
     public bool enemyTeritory = false;
 
     void Start()
     {   
         //Get the game object bcs otherwise it will assign it null
-        GameObject enemy = GameObject.FindWithTag("Enemy");
+        enemy = GameObject.FindWithTag("Enemy");
+
         if(enemy != null)
             enemyDetection = enemy.GetComponent<EnemyDetection>();
         else Debug.LogWarning("Enemy not found!");
@@ -37,13 +47,25 @@ public class ZoneDetection : MonoBehaviour
 
     void StartChase()
     {
+        //Get the current player position
+        playerPos = playerController.rg.transform.position;     
+
         if(!inZone && enemyTeritory)
         {
+            enemyChaseSpeed = (enemyDetection.speed + 2f)  * Time.deltaTime;
+
+            enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, playerPos, enemyChaseSpeed);
+            if (Vector3.Distance(enemy.transform.position,  playerPos) < 0.001f)
+            {
+                // Reset the target position to the original object position.
+                enemy.transform.position *= -1.0f;
+            }
+
             print("Enemy speed is: " + enemyDetection.speed);
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         StartChase();
     }

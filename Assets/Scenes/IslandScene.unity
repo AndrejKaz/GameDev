@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDetection: {fileID: 429942917}
+  playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
 --- !u!1 &574871499
@@ -1812,6 +1813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDetection: {fileID: 429942917}
+  playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
 --- !u!1 &1419454873
@@ -1936,6 +1938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDetection: {fileID: 429942917}
+  playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
 --- !u!1 &1474544447
@@ -2060,6 +2063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDetection: {fileID: 429942917}
+  playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
 --- !u!1 &1567781014
