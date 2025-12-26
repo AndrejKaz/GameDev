@@ -55,7 +55,7 @@ public class ZoneDetection : MonoBehaviour
             enemyChaseSpeed = (enemyDetection.speed + 2f)  * Time.deltaTime;
 
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, playerPos, enemyChaseSpeed);
-            if (Vector3.Distance(enemy.transform.position,  playerPos) < 0.001f)
+            if (Vector3.Distance(enemy.transform.position,  playerPos) < 0.01f)
             {
                 // Reset the target position to the original object position.
                 enemy.transform.position *= -1.0f;
