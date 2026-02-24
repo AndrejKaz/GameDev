@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,27 +6,48 @@ using UnityEngine.Splines;
 
 public class HandView : MonoBehaviour
 {
-    /*[===GAME-OBJECTS===]*/
-    [SerializeField] SplineContainer hand;
-    [SerializeField] GameObject deck;
-    [SerializeField] GameObject cardPrefab;
+    /*[===REFERENCES===]*/
+    [SerializeField] private SplineContainer hand;
+    [SerializeField] private DeckManager deckManager;
 
     /*[===VARIABLES===]*/
-    private int maxHandSize = 8;
-    private List<GameObject> handCards = new();
-    private float animationDuration = 0.25f;
+    [SerializeField] private int maxHandSize = 9;
+    [SerializeField] private float animationDuration = 0.25f;
 
-    void Start()
+    /*[===GAMEOBJECTS===]*/
+    private List<GameObject> handCards = new List<GameObject>();
+
+
+    //DEBUG TIME
+    private void Start()
     {
-        //The deck is missing
-        if (deck == null) return;
+        if(deckManager.deckList == null) return;
+        StartingHand();
+    }
+  
+
+
+
+    private void StartingHand()
+    {
+        int cardsToDraw = 6;
+
+        for (int i = 0; i < cardsToDraw; i++)
+        {
+            // Always take the top card (index 0)
+            GameObject card = deckManager.deckList[0];
+            handCards.Add(card);
+            deckManager.deckList.RemoveAt(0);
+
+            // Reparent to hand (so they move with the hand if needed)
+            card.transform.SetParent(hand.transform, true);
+        }
+
+        // Position them along the spline
+        UpdateCardPosition();
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) DrawCard();
-    }
-
+    // (Rest of your methods: UpdateCardPosition, MoveCard, DrawCard – unchanged)
     private void UpdateCardPosition()
     {
         if (handCards.Count == 0) return;
@@ -36,47 +58,32 @@ public class HandView : MonoBehaviour
 
         for (int i = 0; i < handCards.Count; i++)
         {
-            float pos = firstCardPosition + i * cardSpacing;
+            float t = firstCardPosition + i * cardSpacing;
+            Vector3 targetPos = hand.transform.TransformPoint(spline.EvaluatePosition(t));
+            Vector3 up = hand.transform.TransformDirection(spline.EvaluateUpVector(t));
+            Quaternion targetRot = Quaternion.LookRotation(Vector3.forward, up);
 
-            // Convert spline local position to world position
-            Vector3 splinePosition = hand.transform.TransformPoint(spline.EvaluatePosition(pos));
-
-            Vector3 up = hand.transform.TransformDirection(spline.EvaluateUpVector(pos));
-
-            // Fix the -90 X rotation: use forward as the card's up axis
-            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, up);
-
-            StartCoroutine(MoveCard(handCards[i], splinePosition, rotation));
+            StartCoroutine(MoveCard(handCards[i], targetPos, targetRot));
         }
     }
 
-    private IEnumerator MoveCard(GameObject card, Vector3 targetPosition, Quaternion targetRotation)
+    private IEnumerator MoveCard(GameObject card, Vector3 targetPos, Quaternion targetRot)
     {
         float elapsed = 0f;
-        Vector3 startPosition = card.transform.position;
-        Quaternion startRotation = card.transform.rotation;
+        Vector3 startPos = card.transform.position;
+        Quaternion startRot = card.transform.rotation;
 
         while (elapsed < animationDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / animationDuration);
             float smoothT = t * t * (3f - 2f * t);
-
-            card.transform.position = Vector3.Lerp(startPosition, targetPosition, smoothT);
-            card.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, smoothT);
-
+            card.transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
+            card.transform.rotation = Quaternion.Slerp(startRot, targetRot, smoothT);
             yield return null;
         }
 
-        card.transform.position = targetPosition;
-        card.transform.rotation = targetRotation;
-    }
-
-    private void DrawCard()
-    {
-        if (handCards.Count >= maxHandSize) return;
-        GameObject card = Instantiate(cardPrefab, deck.transform.position, deck.transform.rotation);
-        handCards.Add(card);
-        UpdateCardPosition();
+        card.transform.position = targetPos;
+        card.transform.rotation = targetRot;
     }
 }
