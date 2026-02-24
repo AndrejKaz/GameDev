@@ -18,11 +18,6 @@ public class CardData : MonoBehaviour
     private int[] numberId;
     
 
-    public void Start()
-    {
-    }
-
-
     public void SetCardIdArr()
     {
         numberId = new int[uniqueNumCards];
