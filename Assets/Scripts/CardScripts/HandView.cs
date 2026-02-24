@@ -9,7 +9,7 @@ public class HandView : MonoBehaviour
     /*[===REFERENCES===]*/
     [SerializeField] private SplineContainer hand;
     [SerializeField] private DeckManager deckManager;
-
+    
     /*[===VARIABLES===]*/
     [SerializeField] private int maxHandSize = 9;
     [SerializeField] private float animationDuration = 0.25f;
@@ -24,9 +24,7 @@ public class HandView : MonoBehaviour
         if(deckManager.deckList == null) return;
         StartingHand();
     }
-  
-
-
+    
 
     private void StartingHand()
     {

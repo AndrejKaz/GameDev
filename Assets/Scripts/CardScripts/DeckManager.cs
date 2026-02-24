@@ -9,7 +9,7 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     [SerializeField] GameObject myDeck;
-    [SerializeField] GameObject cardPrefab;
+    [SerializeField] public GameObject cardPrefab;
     public List<GameObject> deckList = new ();
     public bool deckExists = false;
 

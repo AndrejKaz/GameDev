@@ -1,22 +1,50 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CardData : MonoBehaviour
 {
-    /*[===VARIABLES===]*/
-    [SerializeField] int manaCost;
-    [SerializeField] string cardEffect;
-    [SerializeField] float cardDmg;
-    [SerializeField] int cardId;
-    [SerializeField] string cardName;
-    //Sprite render
+    /*[===REFERENCES===]*/
+    DeckManager deckManager;
+    CardContainerData cardData;
 
-    //I will have 19 unique cards, and 50 cards in total in my deck
+
+    //Getting needed data from fixed arrays;
+    /*[===VARIABLES===]*/    
+    private int uniqueNumCards = 20;
+    private int[] numberId;
+    
+
     public void Start()
     {
-        
     }
 
 
+    public void SetCardIdArr()
+    {
+        numberId = new int[uniqueNumCards];
+    
+        for (int i = 0; i < uniqueNumCards; i++)
+        {
+            numberId[i] = i;
+        }
+    }
+
+    //Setting the data for the cards
+    public void setData()
+{
+    for (int i = 0; i < uniqueNumCards; i++)
+    {
+        if (i == 2)
+        {
+            cardData.manaCost = 2;
+            cardData.cardDmg = 3.00f;
+            cardData.cardId = 5;
+            cardData.cardName = "Fireball";
+        }
+    }
+}
 }

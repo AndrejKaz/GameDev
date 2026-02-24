@@ -186,6 +186,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6921089384305041038}
   - component: {fileID: 4070096960002574493}
+  - component: {fileID: 3296715181436305794}
+  - component: {fileID: 3470049186410475266}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -264,3 +266,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3296715181436305794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830445020595513412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c69e6cc3bd97b4fb167e55be2f91a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCard: {fileID: 8830445020595513412}
+--- !u!114 &3470049186410475266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830445020595513412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e287f00e098cff344b7d58927d29b352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 0
+  cardDmg: 0
+  cardId: 0
+  cardName: 
