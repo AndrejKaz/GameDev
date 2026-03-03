@@ -84,4 +84,6 @@ public class HandView : MonoBehaviour
         card.transform.position = targetPos;
         card.transform.rotation = targetRot;
     }
+
+
 }

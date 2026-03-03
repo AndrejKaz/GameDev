@@ -26,15 +26,7 @@ public class DeckManager : MonoBehaviour
             deckExists = true;
         }
         //SetCardData
-        if(deckList.Count == cardsInDeck) DeckShuffle();
-    }
-
-    void Update()
-    {
-        for(int i = 0; i < 50; i++)
-        {
-            print(deckList[i].GetComponent<CardContainerData>().cardName);
-        }
+        DeckShuffle();
     }
 
     //Create all 50 cards and place them in the deck
@@ -122,15 +114,20 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    //Shuffling works now
     private void DeckShuffle()
     {
-        int rand = UnityEngine.Random.Range(0, cardsInDeck);
-
-        for(int i = 0; i < cardsInDeck; i++)
+        for (int i = 0; i < cardsInDeck; i++)
         {
-            GameObject temp = deckList[i];
-            deckList[i] = deckList[rand];
-            deckList[rand] = temp;
+            int rand = UnityEngine.Random.Range(0, cardsInDeck);
+            Swap(i, rand);
         }
+    }
+
+    private void Swap(int i1, int i2)
+    {
+        GameObject temp = deckList[i1];
+        deckList[i1] = deckList[i2];
+        deckList[i2] = temp;
     }
 }
