@@ -9,9 +9,11 @@ using UnityEngine.UI;
 public class TurnCounter : MonoBehaviour
 {
     [SerializeField] Button NTButton;
-    private int turnCounter = 0;
-    private int manaCounter = 1;
-    private int maxMana = 10;
+    public int turnCounter = 0;
+
+    //Ref
+    public PlayerScript playerScript;
+    public EnemyScript enemyScript;
 
     private Button bt;
 
@@ -20,19 +22,13 @@ public class TurnCounter : MonoBehaviour
     {
         bt = NTButton.GetComponent<Button>();
         bt.onClick.AddListener(turnIncr);
-        
 
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if(manaCounter <= maxMana && turnCounter % 2 == 0)
-        {
-            manaCounter++;
-        }
-        //Make a coroutine
-        print(turnCounter);
+        print("Turn counter from turn counter script" + turnCounter);
     }
 
     
@@ -41,7 +37,10 @@ public class TurnCounter : MonoBehaviour
     public void turnIncr()
     {
         turnCounter++;
+        if (turnCounter % 2 == 0 && playerScript.manaCounter < playerScript.maxMana){
+            playerScript.manaCounter++;
+            enemyScript.hasAttacked = false;
+        }
+            
     }
-
-
 }

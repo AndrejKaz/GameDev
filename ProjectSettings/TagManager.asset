@@ -11,6 +11,7 @@ TagManager:
   - TargetPoint
   - EnterRadius
   - DetectionWall
+  - Card
   layers:
   - Default
   - TransparentFX
