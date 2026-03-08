@@ -17,14 +17,11 @@ public class HandView : MonoBehaviour
     /*[===GAMEOBJECTS===]*/
     private List<GameObject> handCards = new List<GameObject>();
 
-
-    //DEBUG TIME
     private void Start()
     {
         if(deckManager.deckList == null) return;
         StartingHand();
     }
-    
 
     private void StartingHand()
     {
@@ -32,20 +29,33 @@ public class HandView : MonoBehaviour
 
         for (int i = 0; i < cardsToDraw; i++)
         {
-            // Always take the top card (index 0)
             GameObject card = deckManager.deckList[0];
             handCards.Add(card);
             deckManager.deckList.RemoveAt(0);
-
-            // Reparent to hand (so they move with the hand if needed)
             card.transform.SetParent(hand.transform, true);
         }
 
-        // Position them along the spline
         UpdateCardPosition();
     }
 
-    // (Rest of your methods: UpdateCardPosition, MoveCard, DrawCard – unchanged)
+    public void DrawCard()
+    {
+        if (deckManager.deckList.Count == 0) return;
+
+        GameObject card = deckManager.deckList[0];
+        handCards.Add(card);
+        deckManager.deckList.RemoveAt(0);
+        card.transform.SetParent(hand.transform, true);
+
+        UpdateCardPosition();
+    }
+
+    public void RemoveCard(GameObject card) 
+    {
+        handCards.Remove(card);
+        UpdateCardPosition();
+    }
+
     private void UpdateCardPosition()
     {
         if (handCards.Count == 0) return;
@@ -84,6 +94,4 @@ public class HandView : MonoBehaviour
         card.transform.position = targetPos;
         card.transform.rotation = targetRot;
     }
-
-
 }

@@ -190,6 +190,8 @@ GameObject:
   - component: {fileID: 3470049186410475266}
   - component: {fileID: 1285793459347983704}
   - component: {fileID: 5626752942574749799}
+  - component: {fileID: 5307660684829681037}
+  - component: {fileID: 4914602874476768030}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -357,3 +359,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5307660684829681037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830445020595513412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38f5c4acdc64384fb231f75eb79140c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Card: {fileID: 8830445020595513412}
+--- !u!114 &4914602874476768030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8830445020595513412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcebb783a5d4f184e81932b19d825571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handView: {fileID: 0}
+  deckManager: {fileID: 0}

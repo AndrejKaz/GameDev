@@ -11,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     /*[===VARIABLES===]*/
     private float enemyATK = 10.0f;
     public bool hasAttacked = false;
+    public float enemyHP = 100.0f;
     
 
     /*[===REFERENCES===]*/

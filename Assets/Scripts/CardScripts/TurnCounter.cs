@@ -14,6 +14,7 @@ public class TurnCounter : MonoBehaviour
     //Ref
     public PlayerScript playerScript;
     public EnemyScript enemyScript;
+    public HandView handView;
 
     private Button bt;
 
@@ -22,7 +23,6 @@ public class TurnCounter : MonoBehaviour
     {
         bt = NTButton.GetComponent<Button>();
         bt.onClick.AddListener(turnIncr);
-
     }
 
     // Update is called once per frame
@@ -33,14 +33,13 @@ public class TurnCounter : MonoBehaviour
 
     
     //Pass turn by the button
-     
     public void turnIncr()
     {
         turnCounter++;
         if (turnCounter % 2 == 0 && playerScript.manaCounter < playerScript.maxMana){
             playerScript.manaCounter++;
+            handView.DrawCard();
             enemyScript.hasAttacked = false;
-        }
-            
+        }  
     }
 }

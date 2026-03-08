@@ -6,7 +6,6 @@ using System.Linq;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
-
 public class DeckManager : MonoBehaviour
 {
     [SerializeField] GameObject myDeck;
@@ -37,7 +36,7 @@ public class DeckManager : MonoBehaviour
             GameObject deckCard = Instantiate(cardPrefab, myDeck.transform.position, Quaternion.identity);
             deckCard.transform.SetParent(myDeck.transform, true);
 
-            //Get the card datat
+            //Get the card data
             CardContainerData cardData = deckCard.GetComponent<CardContainerData>();
 
             if(deckCard != null) SetCardData(cardData, i);            
@@ -49,7 +48,7 @@ public class DeckManager : MonoBehaviour
     private void SetCardData(CardContainerData data, int index)
     {
         //SetCardID data
-        switch (index % 5) 
+        switch (index % 10) 
         {
             case 0:
                 data.cardName = "Spirit axe";

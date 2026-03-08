@@ -1,26 +1,29 @@
 using System.Numerics;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
+using Vector3 = UnityEngine.Vector3;
 
 public class CardDrag : MonoBehaviour
 {
     [SerializeField] GameObject Card;
-    
-    private UnityEngine.Vector3 startingPos;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public CardDropArea cardDropArea;
+    public static CardDrag draggedCard;
+    public PointerEventData whatData;
+    private Vector3 startingPos;
+
     void Start()
     {
-        if(Card == null) print("Card not found");
-        
+        if (Card == null) print("Card not found");
     }
 
-    //Drag and drop cards
-    public void OuseDown()
+    void OnMouseDown()
     {
-        startingPos = Card.transform.position;    
+        startingPos = Card.transform.position;
+        draggedCard = this;
     }
 
     void OnMouseDrag()
@@ -28,17 +31,25 @@ public class CardDrag : MonoBehaviour
         Card.transform.position = GetMousePosInWorld();
     }
 
-    public void Op()
-    {
-        print("Card has been dropped");
-        Card.transform.position = startingPos;
+    void OnMouseUp()
+    {  
+        UnityEngine.Vector2 mousePos = GetMousePosInWorld();
+        Collider2D hitCol = Physics2D.OverlapPoint(mousePos);
+
+        if(hitCol != null)
+        {
+            //CARD DROP AREA
+            cardDropArea.CardDrop();
+        }
+        {
+            Card.transform.position = startingPos;
+        }
     }
 
-    //Getting the current mouse pos in the world
-    public UnityEngine.Vector3 GetMousePosInWorld()
+    public Vector3 GetMousePosInWorld()
     {
-        UnityEngine.Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0f;
         return mousePos;
-    }
+    }  
 }
