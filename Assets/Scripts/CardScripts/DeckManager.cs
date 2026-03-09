@@ -45,9 +45,10 @@ public class DeckManager : MonoBehaviour
         }
     } 
 
+    //Tweak the mana properly later on
     private void SetCardData(CardContainerData data, int index)
     {
-        //SetCardID data
+        //SetCardID data, Tweak it later so it works properly
         switch (index % 10) 
         {
             case 0:
@@ -64,49 +65,49 @@ public class DeckManager : MonoBehaviour
                 break;
             case 2:
                 data.cardName = "Spirit storm";
-                data.manaCost = 4;
+                data.manaCost = 1;
                 data.cardDmg = 5.0f;
                 data.cardId = 2;
                 break;
             case 3:
                 data.cardName = "Dark hole";
-                data.manaCost = 10;
+                data.manaCost = 2;
                 data.cardDmg = 20.0f;
                 data.cardId = 3;
                 break;
             case 4:
                 data.cardName = "Spirit arrow";
-                data.manaCost = 6;
+                data.manaCost = 1;
                 data.cardDmg = 8.5f;
                 data.cardId = 4;
                 break;
             case 5:
                 data.cardName = "Eye of the beholder";
-                data.manaCost = 5;
+                data.manaCost = 1;
                 data.cardDmg = 7f;
                 data.cardId = 5;
                 break;
             case 6:
                 data.cardName = "Fairy boots";
-                data.manaCost = 4;
+                data.manaCost = 3;
                 data.cardDmg = 3f;
                 data.cardId = 6;
                 break;
             case 7:
                 data.cardName = "Fairy wings";
-                data.manaCost = 7;
+                data.manaCost = 2;
                 data.cardDmg = 12f;
                 data.cardId = 7;
                 break;
             case 8:
                 data.cardName = "Blue flame";
-                data.manaCost = 5;
+                data.manaCost = 1;
                 data.cardDmg = 6.5f;
                 data.cardId = 8;
                 break;
             case 9:
                 data.cardName = "Crystal golem";
-                data.manaCost = 9;
+                data.manaCost = 2;
                 data.cardDmg = 17f;
                 data.cardId = 9;
                 break;

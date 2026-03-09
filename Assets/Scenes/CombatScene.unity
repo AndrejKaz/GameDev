@@ -652,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 513832293}
   hasAttacked: 0
-  enemyHP: 100
+  enemyHP: 10
   turnCounter: {fileID: 1377738025}
   playerScript: {fileID: 1480740517}
 --- !u!114 &513832298
@@ -670,6 +670,7 @@ MonoBehaviour:
   deckManager: {fileID: 289695467}
   enemyScript: {fileID: 513832297}
   handView: {fileID: 1808339985}
+  playerScript: {fileID: 1480740517}
 --- !u!1 &578923065
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +985,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Card
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3296715181436305794, guid: 2b3ca37cd59837c4bb2087482f51f5cc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

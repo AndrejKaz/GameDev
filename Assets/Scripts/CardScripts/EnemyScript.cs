@@ -2,21 +2,24 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] GameObject Enemy;
-    //private float enemyHP = 100.0f;
+    
 
     /*[===VARIABLES===]*/
     private float enemyATK = 10.0f;
     public bool hasAttacked = false;
-    public float enemyHP = 100.0f;
+    public float enemyHP = 10.0f;
     
 
     /*[===REFERENCES===]*/
     public TurnCounter turnCounter;
     public PlayerScript playerScript;
+    private bool isAlive = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,8 +35,10 @@ public class EnemyScript : MonoBehaviour
             hasAttacked = true;
             StartCoroutine(EnemyHit());
         }
-
         print("Current player hp: " + playerScript.playerHP);
+
+        EnemyLives();
+        StartCoroutine(EnemyDies());
     }
 
     public IEnumerator EnemyHit()
@@ -49,5 +54,24 @@ public class EnemyScript : MonoBehaviour
         playerScript.playerHP -= enemyATK;
         yield return new WaitForSeconds(1);
         turnCounter.turnIncr();
+    }
+
+    public bool EnemyLives()
+    {
+        if(enemyHP <= 0.0f) isAlive = false;
+        return isAlive;
+    }
+
+    public IEnumerator EnemyDies()
+    {
+        if(isAlive == false)
+        {
+            yield return new WaitForSeconds(1);
+            Destroy(Enemy);
+
+            /*[===PROBLEM HERE===]*/
+            // yield return new WaitForSeconds(2);
+            // SceneManager.LoadScene(0);
+        }
     }
 }

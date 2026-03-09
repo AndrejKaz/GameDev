@@ -15,7 +15,7 @@ public class TurnCounter : MonoBehaviour
     public PlayerScript playerScript;
     public EnemyScript enemyScript;
     public HandView handView;
-
+    
     private Button bt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,7 +30,6 @@ public class TurnCounter : MonoBehaviour
     {   
         print("Turn counter from turn counter script" + turnCounter);
     }
-
     
     //Pass turn by the button
     public void turnIncr()
