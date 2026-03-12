@@ -3,16 +3,14 @@ using UnityEngine.Rendering;
 
 public class ZoneDetection : MonoBehaviour
 {
-    //Script references
+    /*[===Script references===]*/
     public EnemyDetection enemyDetection;
     public PlayerController playerController;
 
-    //Player and enemy variables
+    /*[===Variables===]*/
     private Vector3 playerPos = new Vector3(0f,0f,0f);
     private GameObject enemy;
     private float enemyChaseSpeed = 0f;
-
-    //Check if the player is in the zone
     public bool inZone = false;
     public bool enemyTeritory = false;
 
@@ -21,8 +19,7 @@ public class ZoneDetection : MonoBehaviour
         //Get the game object bcs otherwise it will assign it null
         enemy = GameObject.FindWithTag("Enemy");
 
-        if(enemy != null)
-            enemyDetection = enemy.GetComponent<EnemyDetection>();
+        if(enemy != null) enemyDetection = enemy.GetComponent<EnemyDetection>();
         else Debug.LogWarning("Enemy not found!");
     }
 

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
         rg.freezeRotation = true;
         
         cameraTransform = Camera.main.transform;
+        //Fix this
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
