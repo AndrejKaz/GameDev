@@ -654,7 +654,7 @@ MonoBehaviour:
   turnCounter: {fileID: 1377738025}
   playerScript: {fileID: 1480740517}
   hasAttacked: 0
-  enemyHP: 100
+  enemyHP: 10
 --- !u!114 &513832298
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,12 @@ TagManager:
   tags:
   - Water
   - Enemy
-  - Dude
   - Ground
   - TargetPoint
   - EnterRadius
   - DetectionWall
   - Card
+  - EnemyGround
   layers:
   - Default
   - TransparentFX

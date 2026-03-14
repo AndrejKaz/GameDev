@@ -22,6 +22,10 @@ public class CardDropArea : MonoBehaviour
             return;
         }
 
+        //For some reason bcs of Fiary Wings effect you need to remove the cards again 
+        handView.RemoveCard(CardDrag.draggedCard.gameObject);
+        Destroy(CardDrag.draggedCard.gameObject);
+
         playerScript.manaCounter -= cardData.manaCost;
 
         CardEffect(cardData.cardName);
@@ -57,8 +61,8 @@ public class CardDropArea : MonoBehaviour
 
     private void FairyWings()
     {
-        for (int i = 0; i < 2; i++)
-            handView.DrawCard();
+        handView.DrawCard();
+        handView.DrawCard();
     }
 
     private void CardEffect(string cardName)

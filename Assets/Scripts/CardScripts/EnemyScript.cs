@@ -18,8 +18,10 @@ public class EnemyScript : MonoBehaviour
     /*[===VARIABLES===]*/
     private float enemyATK;
     public bool hasAttacked = false;
-    public float enemyHP = 10.0f;
+    public float enemyHP = 100.0f;
     private bool isAlive = true;
+    private bool isDead = false;
+    private int randHeal;
 
     void Start()
     {        
@@ -28,6 +30,8 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        randHeal = UnityEngine.Random.Range(0,6);
+
         if(turnCounter.turnCounter % 2 != 0 && hasAttacked == false)
         {
             hasAttacked = true;
@@ -38,25 +42,24 @@ public class EnemyScript : MonoBehaviour
 
         EnemyLives();
         
-        if(isAlive == false)
+        if(isAlive == false && !isDead)
         {
+            isDead = true;
             StartCoroutine(EnemyDies());
         }
 
-        StartCoroutine(EnemyHeal());
+        //StartCoroutine(EnemyHeal());
     }
 
-    public IEnumerator EnemyHit()
+    private IEnumerator EnemyHit()
     {
         //Get a crit chance which is 1 in 5 and make a crit atk
         int rand = UnityEngine.Random.Range(0,6);
         float critAtk = enemyATK / 2;
         enemyATK = UnityEngine.Random.Range(5f, 10f);
 
-        if(rand == 1)
-        {
-            playerScript.playerHP -= (enemyATK + critAtk);
-        }
+        if(rand == 1) playerScript.playerHP -= (enemyATK + critAtk);
+    
 
         playerScript.playerHP -= enemyATK;
 
@@ -67,12 +70,9 @@ public class EnemyScript : MonoBehaviour
 
     private IEnumerator EnemyHeal()
     {
-        int rand = UnityEngine.Random.Range(1,7);
-
         float heal = UnityEngine.Random.Range(10f, 20f);
         
-        //Heal enemy [TWEAK THIS LATER ON]
-        if(rand == 1 && enemyHP <= 5f) enemyHP += heal;
+        if(randHeal == 1 && enemyHP <= 25f) enemyHP += heal;
     
         yield return new WaitForSeconds(1);
     }
@@ -84,20 +84,19 @@ public class EnemyScript : MonoBehaviour
         return DefenceEnemy; 
     }
 
-    public bool EnemyLives()
+    private bool EnemyLives()
     {
         if(enemyHP <= 0.0f) isAlive = false;
         return isAlive;
     }
 
-    public IEnumerator EnemyDies()
+    /*The problem with the yield return new usage,
+    make sure that you proprely incorparate it bcs it fucks it up for some reason
+    */
+    private IEnumerator EnemyDies()
     {
-        yield return new WaitForSeconds(1);
-        Destroy(Enemy);
-
-        /*[===PROBLEM HERE===]*/
-        yield return new WaitForSeconds(2);
+        Enemy.SetActive(false);
         SceneManager.LoadScene(0);
-        
+        yield return new WaitForSeconds(2);
     }
 }
