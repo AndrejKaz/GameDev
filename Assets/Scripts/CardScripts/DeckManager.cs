@@ -5,51 +5,58 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.Splines.ExtrusionShapes;
 
 public class DeckManager : MonoBehaviour
 {
+    /*[===Game Objects===]*/
     [SerializeField] GameObject myDeck;
     [SerializeField] public GameObject cardPrefab;
-    public List<GameObject> deckList = new ();
+    public List<GameObject> deckList = new();
+
+    /*[===References===]*/
+    [SerializeField] private Sprite[] cardSprites;
+
+    /*[===Variables===]*/
     public bool deckExists = false;
     public int cardsInDeck = 50;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(myDeck == null) return;
+        if (myDeck == null) return;
 
         if (!deckExists)
         {
             CardsOnLoad();
             deckExists = true;
         }
-        //SetCardData
         DeckShuffle();
     }
 
-    //Create all 50 cards and place them in the deck
     private void CardsOnLoad()
     {
-        for(int i = 0; i < cardsInDeck; i++)
+        for (int i = 0; i < cardsInDeck; i++)
         {
             GameObject deckCard = Instantiate(cardPrefab, myDeck.transform.position, Quaternion.identity);
             deckCard.transform.SetParent(myDeck.transform, true);
 
-            //Get the card data
             CardContainerData cardData = deckCard.GetComponent<CardContainerData>();
 
-            if(deckCard != null) SetCardData(cardData, i);            
+            if (cardData != null)
+            {
+                SetCardData(cardData, i);
 
+                if (cardData.spriteRenderer != null) cardData.spriteRenderer.sprite = cardSprites[cardData.cardId];
+            }
+
+            deckCard.transform.localScale = new Vector3(1,1.5f,1);
             deckList.Add(deckCard);
         }
-    } 
+    }
 
-    //Tweak the mana properly later on
     private void SetCardData(CardContainerData data, int index)
     {
-        //SetCardID data, Tweak it later so it works properly
-        switch (index % 10) 
+        switch (index % 10)
         {
             case 0:
                 data.cardName = "Spirit axe";
@@ -88,19 +95,19 @@ public class DeckManager : MonoBehaviour
                 data.cardId = 5;
                 break;
             case 6:
-                data.cardName = "Fairy boots";
+                data.cardName = "Fairy Potion";
                 data.manaCost = 6;
                 data.cardDmg = 3f;
                 data.cardId = 6;
                 break;
             case 7:
-                data.cardName = "Fairy wings";
+                data.cardName = "Fairy wand";
                 data.manaCost = 4;
                 data.cardDmg = 3.5f;
                 data.cardId = 7;
                 break;
             case 8:
-                data.cardName = "Blue flame";
+                data.cardName = "Fireball";
                 data.manaCost = 5;
                 data.cardDmg = 7.0f;
                 data.cardId = 8;
@@ -114,7 +121,6 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    //Shuffling works now
     private void DeckShuffle()
     {
         for (int i = 0; i < cardsInDeck; i++)

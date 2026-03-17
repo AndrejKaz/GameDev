@@ -222,6 +222,17 @@ MonoBehaviour:
   myDeck: {fileID: 289695463}
   cardPrefab: {fileID: 453982545}
   deckList: []
+  cardSprites:
+  - {fileID: 21300000, guid: b08cca67ebfd772449af6eaebe545a9a, type: 3}
+  - {fileID: 21300000, guid: af9359c282b82844e8c8de949462a90e, type: 3}
+  - {fileID: 21300000, guid: 31a7d0cdc3bbb9049b36048ba7e6b4af, type: 3}
+  - {fileID: 21300000, guid: 983ff501081be6c4dade29ccc3b1f49c, type: 3}
+  - {fileID: 21300000, guid: 16232bca831011b438ba3f839ac2c8db, type: 3}
+  - {fileID: 21300000, guid: 23f4eb9fc650b8f43bfaddb7f906b088, type: 3}
+  - {fileID: 21300000, guid: 79efcd703329a4a43a856cf4435e65f7, type: 3}
+  - {fileID: 21300000, guid: 4556b69fe4e393749814cf3165c57532, type: 3}
+  - {fileID: 21300000, guid: adcd22a375373034da6ee8868784c4d5, type: 3}
+  - {fileID: 21300000, guid: 85d83e277a48054469bd4dc298971d8a, type: 3}
   deckExists: 0
   cardsInDeck: 50
 --- !u!1 &453982545 stripped
@@ -654,7 +665,7 @@ MonoBehaviour:
   turnCounter: {fileID: 1377738025}
   playerScript: {fileID: 1480740517}
   hasAttacked: 0
-  enemyHP: 10
+  enemyHP: 100
 --- !u!114 &513832298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,12 +1176,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3296715181436305794, guid: 2b3ca37cd59837c4bb2087482f51f5cc, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6274570623718789047, guid: 2b3ca37cd59837c4bb2087482f51f5cc, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6274570623718789047, guid: 2b3ca37cd59837c4bb2087482f51f5cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b3ca37cd59837c4bb2087482f51f5cc, type: 3}
 --- !u!1 &1377738023
 GameObject:

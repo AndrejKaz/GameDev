@@ -41,7 +41,7 @@ public class CardDropArea : MonoBehaviour
     }
 
     //Card effect functions
-    private void FairyBoots()
+    private void FairyPotion()
     {
         turnCounter.turnCounter += 2;
         playerScript.manaCounter += 2;
@@ -59,18 +59,24 @@ public class CardDropArea : MonoBehaviour
         if (rand == 1) enemyScript.enemyHP -= 5f;
     }
 
-    private void FairyWings()
+    private void FairyWand()
     {
         handView.DrawCard();
         handView.DrawCard();
+        playerScript.manaCounter += 2;
+    }
+
+    private void SpiritAxe()
+    {
+        playerScript.manaCounter += 2;
     }
 
     private void CardEffect(string cardName)
     {
         switch (cardName)
         {
-            case "Fairy boots":      
-                FairyBoots();       
+            case "Fairy Potion":      
+                FairyPotion();       
                 break;
             case "Eye of the beholder": 
                 EyeOfTheBeholder(); 
@@ -78,9 +84,12 @@ public class CardDropArea : MonoBehaviour
             case "Spirit arrow":    
                 SpiritArrow();      
                 break;
-            case "Fairy wings":      
-                FairyWings();       
+            case "Fairy wand":      
+                FairyWand();       
                 break;
+            case "Spirit axe":
+                SpiritAxe();
+            break;
         }
     }
 }

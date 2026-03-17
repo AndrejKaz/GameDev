@@ -16,17 +16,12 @@ public class EnemyScript : MonoBehaviour
     public PlayerScript playerScript;
 
     /*[===VARIABLES===]*/
-    private float enemyATK;
+    public float enemyATK;
     public bool hasAttacked = false;
-    public float enemyHP = 100.0f;
+    public float enemyHP;
     private bool isAlive = true;
     private bool isDead = false;
     private int randHeal;
-
-    void Start()
-    {        
-        if(Enemy == null) print("Enemy not found");
-    }
 
     void Update()
     {
@@ -47,8 +42,6 @@ public class EnemyScript : MonoBehaviour
             isDead = true;
             StartCoroutine(EnemyDies());
         }
-
-        //StartCoroutine(EnemyHeal());
     }
 
     private IEnumerator EnemyHit()
@@ -68,15 +61,6 @@ public class EnemyScript : MonoBehaviour
         turnCounter.turnIncr();
     }
 
-    private IEnumerator EnemyHeal()
-    {
-        float heal = UnityEngine.Random.Range(10f, 20f);
-        
-        if(randHeal == 1 && enemyHP <= 25f) enemyHP += heal;
-    
-        yield return new WaitForSeconds(1);
-    }
-
     public float EnemyDefOnHit()
     {
         float enemyDEF = UnityEngine.Random.Range(0, 5);
@@ -90,9 +74,6 @@ public class EnemyScript : MonoBehaviour
         return isAlive;
     }
 
-    /*The problem with the yield return new usage,
-    make sure that you proprely incorparate it bcs it fucks it up for some reason
-    */
     private IEnumerator EnemyDies()
     {
         Enemy.SetActive(false);

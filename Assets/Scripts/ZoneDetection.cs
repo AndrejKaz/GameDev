@@ -14,8 +14,6 @@ public class ZoneDetection : MonoBehaviour
     public bool inZone = false;
     public bool enemyTeritory = false;
 
-    //debug
-    public EnemyContainerData enemyContainerData;
 
     void Start()
     {   

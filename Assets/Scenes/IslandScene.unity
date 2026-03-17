@@ -840,7 +840,6 @@ GameObject:
   - component: {fileID: 429942919}
   - component: {fileID: 429942918}
   - component: {fileID: 429942917}
-  - component: {fileID: 429942923}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -980,22 +979,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1173425371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &429942923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429942916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75b32864478ab5439805f04aaa68062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 0
-  enemyName: 
-  enemyHP: 0
-  enemyATK: 0
 --- !u!1 &430654027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1104,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!1 &492021932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1699,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!65 &862486700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2382,7 +2363,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!1 &1419454873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,7 +2488,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 429942923}
 --- !u!1 &1468430749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,7 +2721,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!1 &1475160969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2772,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!65 &1475160972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3083,7 +3060,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!65 &1568651957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3172,7 +3148,6 @@ GameObject:
   - component: {fileID: 1649025611}
   - component: {fileID: 1649025610}
   - component: {fileID: 1649025609}
-  - component: {fileID: 1649025608}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -3180,22 +3155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1649025608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649025607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75b32864478ab5439805f04aaa68062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyID: 0
-  enemyName: 
-  enemyHP: 0
-  enemyATK: 0
 --- !u!114 &1649025609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3379,7 +3338,6 @@ MonoBehaviour:
   playerController: {fileID: 1773719704}
   inZone: 0
   enemyTeritory: 0
-  enemyContainerData: {fileID: 0}
 --- !u!65 &1686533447
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3728,7 +3686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8406492b4b949da43ad42c8774923d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyContainerData: {fileID: 429942923}
 --- !u!1 &1872355552
 GameObject:
   m_ObjectHideFlags: 0

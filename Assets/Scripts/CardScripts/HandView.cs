@@ -33,6 +33,8 @@ public class HandView : MonoBehaviour
             handCards.Add(card);
             deckManager.deckList.RemoveAt(0);
             card.transform.SetParent(hand.transform, true);
+            card.transform.localScale = new Vector3(1.0f, 1.5f, 1.0f);
+
         }
 
         UpdateCardPosition();
@@ -46,6 +48,7 @@ public class HandView : MonoBehaviour
         handCards.Add(card);
         deckManager.deckList.RemoveAt(0);
         card.transform.SetParent(hand.transform, true);
+        card.transform.localScale = new Vector3(1.0f, 1.5f, 1.0f);
 
         UpdateCardPosition();
     }
