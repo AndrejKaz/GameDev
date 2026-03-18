@@ -7,6 +7,6 @@ public class StartCombat : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
 
-        SceneManager.LoadScene("CombatScene");
+        //SceneManager.LoadScene("CombatScene");
     }
 }

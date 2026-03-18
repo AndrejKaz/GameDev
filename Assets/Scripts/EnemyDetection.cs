@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Rendering.RenderGraphModule;
 
 public class EnemyDetection : MonoBehaviour
 {
-    /*[===References===]*/
-    public Rigidbody rg;
+    // /*[===References===]*/
+    private Rigidbody rg;
 
     /*[===Variables===]*/
     private GameObject[] targetPoints;
@@ -12,6 +13,9 @@ public class EnemyDetection : MonoBehaviour
 
  void Start()
 {
+    rg = GetComponent<Rigidbody>();
+
+
     rg.freezeRotation = true;
     
     //The target points work properly now
@@ -38,6 +42,7 @@ public class EnemyDetection : MonoBehaviour
     //Enemy moves to given target points
     private void Move()
     {
+
         Vector3 targetPos = targetPoints[index].transform.position;
         Vector3 direction = targetPos - transform.position;
 
