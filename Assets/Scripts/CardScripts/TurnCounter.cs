@@ -30,7 +30,6 @@ public class TurnCounter : MonoBehaviour
 
     void Update()
     {   
-        print("Turn counter from turn counter script" + turnCounter);
         UpdateManaCount();
     }
     

@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnemyManagement : MonoBehaviour
 {
-
     /*[===Game Objects===]*/
     public GameObject enemyPrefab;
     public GameObject enemyGround;
@@ -14,23 +13,21 @@ public class EnemyManagement : MonoBehaviour
     /*[===Variables===]*/
     private List<GameObject> enemyList = new (); 
     private int enemyNum = 1;
- 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if(enemyGround == null) print("No enemy ground found");
-
-        //CreateEnemies();
     }
 
     public void CreateEnemies(GameObject ground, int index)
     {
-
+        Vector3 spawnPos = ground.transform.position + Vector3.up * 1f;
         for(int i = 0; i < enemyNum; i++)
         {
+        
             //Create an enemy
-            GameObject enemy = Instantiate(enemyPrefab, enemyPrefab.transform.position, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
             //Set the ground as the parent and make sure that the local scale is correct
             enemy.transform.SetParent(ground.transform, true);
@@ -38,8 +35,6 @@ public class EnemyManagement : MonoBehaviour
 
             //Set the data for the enemies            
             EnemyContainerData enemyData = enemy.GetComponent<EnemyContainerData>();
-            
-            //This is null for some reason
 
             if(enemyData != null) 
             {
@@ -49,6 +44,7 @@ public class EnemyManagement : MonoBehaviour
                 print("Enemy name: " + enemyData.enemyName);
                 print("Enemy hp: " + enemyData.enemyHP);
                 print("Enemy atk: " + enemyData.enemyATK);
+                print("ENemy id: " + enemyData.enemyID);
             }
 
             //Add the new enemies in the list
@@ -58,7 +54,7 @@ public class EnemyManagement : MonoBehaviour
 
     private void SetEnemyData(EnemyContainerData enemyData,int index)
     {
-        switch (index)
+        switch (index % 4)
         {
             case 0:
                 enemyData.enemyID = 0;
@@ -89,5 +85,4 @@ public class EnemyManagement : MonoBehaviour
             break;
         }
     }
-
 }

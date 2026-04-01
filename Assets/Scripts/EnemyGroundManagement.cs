@@ -9,7 +9,7 @@ public class EnemyGroundManagement : MonoBehaviour
 
     /*[===Variables===]*/
     private List<GameObject> enemyGroundList = new ();
-    private int groundNum = 4;
+    private int groundNum = 8;
     private bool hasCreated = false;
     public int groundId = 0;
 
@@ -27,7 +27,7 @@ public class EnemyGroundManagement : MonoBehaviour
     }
 
 
-     void CreateEnemyGround()
+    void CreateEnemyGround()
     {
         for (int i = 0; i < groundNum; i++)
         {
@@ -37,7 +37,6 @@ public class EnemyGroundManagement : MonoBehaviour
             enemyGroundList.Add(ground);
 
             enemyManagement.CreateEnemies(ground, groundId);
-
         }
     }
 }

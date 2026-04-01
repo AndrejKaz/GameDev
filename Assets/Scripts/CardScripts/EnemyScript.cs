@@ -17,23 +17,39 @@ public class EnemyScript : MonoBehaviour
 
     /*[===VARIABLES===]*/
     public float enemyATK;
-    public bool hasAttacked = false;
     public float enemyHP;
+    public int enemyID;
+    public string enemyName;
+    public bool hasAttacked = false;
     private bool isAlive = true;
     private bool isDead = false;
-    private int randHeal;
+
+    void Awake()
+    {
+        GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
+        EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
+
+        //Get the data from the 3d scene
+        enemyName = bridgedData.BridgeEnemyName;
+        enemyHP = bridgedData.BridgeEnemyHP;
+        enemyATK = bridgedData.BridgeEnemyATK;
+        enemyID = bridgedData.BridgeEnemyID;
+
+        print("My name is: " + enemyName);
+        print("My HP is: " + enemyHP);
+        print("My ATK is: " + enemyATK);
+        print("My ID is: " + enemyID);
+    }
 
     void Update()
     {
-        randHeal = UnityEngine.Random.Range(0,6);
-
         if(turnCounter.turnCounter % 2 != 0 && hasAttacked == false)
         {
             hasAttacked = true;
             StartCoroutine(EnemyHit());
         }
         
-        print("Current enemy hp: " + enemyHP);
+        
 
         EnemyLives();
         

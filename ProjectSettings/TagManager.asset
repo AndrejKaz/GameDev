@@ -12,6 +12,7 @@ TagManager:
   - DetectionWall
   - Card
   - EnemyGround
+  - BridgeData
   layers:
   - Default
   - TransparentFX

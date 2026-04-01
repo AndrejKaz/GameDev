@@ -31,11 +31,8 @@ public class ZoneDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
-        {
-            inZone = true;
-            print("Player entered the zone" + inZone);
-        }
+        if (other.CompareTag("Player")) inZone = true;
+        
     }
 
     void OnTriggerExit(Collider other)
@@ -44,7 +41,6 @@ public class ZoneDetection : MonoBehaviour
         {
             inZone = false;
             enemyTeritory = true;
-            print("Player exited the zone" + inZone);
         }
     }
 
@@ -63,8 +59,6 @@ public class ZoneDetection : MonoBehaviour
                 //Reset position back
                 enemy.transform.position *= -1.0f;
             }
-
-            print("Enemy speed is: " + enemyDetection.speed);
         }
     }
 }
