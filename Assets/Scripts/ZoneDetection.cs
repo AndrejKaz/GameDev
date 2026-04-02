@@ -51,6 +51,8 @@ public class ZoneDetection : MonoBehaviour
     //Start the enemy chase
     public void StartChase()
     {
+        if (enemy == null) return;
+
         playerPos = playerController.rg.transform.position;
 
         if (enemyTeritory)
@@ -59,7 +61,6 @@ public class ZoneDetection : MonoBehaviour
 
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, playerPos, enemyChaseSpeed);
 
-            // Fix: instead of teleporting with *= -1, simply stop chasing once reached
             if (Vector3.Distance(enemy.transform.position, playerPos) < 0.01f)
             {
                 enemyTeritory = false;

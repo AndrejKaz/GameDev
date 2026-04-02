@@ -1,35 +1,45 @@
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
-{
-    /*[===MOVEMENT===]*/
+{      
+    /*[REFERENCES]*/
+    public PlayerBridgeData playerBridgeData;
+
+    /*[===VARIABLES===]*/
     public Rigidbody rg;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float sprintSpeed = 10.0f;
     private float currentSpeed = 0f;
-    
-    /*[===CAMERA===]*/
     private float mouseSensitivity = 2.0f;
     private float verticalRotation = 0.0f;
     private Transform cameraTransform;
     private Vector3 movementInput;
 
+    void Awake()
+    {
+        playerBridgeData = PlayerBridgeData.Instance;
+    }
+
     void Start()
     {
+        playerBridgeData = PlayerBridgeData.Instance; 
+        rg.position = playerBridgeData.lastPos;
         rg.freezeRotation = true;
-        
         cameraTransform = Camera.main.transform;
-        //Fix this
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     void Update()
     {
+        playerBridgeData.lastPos = playerBridgeData.currPos; 
+        playerBridgeData.currPos = rg.transform.position;
         GetMovementInput();
         RotateCamera();
     }
+
 
     void FixedUpdate()
     {

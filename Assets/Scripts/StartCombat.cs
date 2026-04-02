@@ -4,42 +4,49 @@ using UnityEngine.SceneManagement;
 
 public class StartCombat : MonoBehaviour
 {
+    private GameObject enemy;
+
     void OnCollisionEnter(Collision other)
     {
         //Get the enemy game object
-        GameObject enemy = this.gameObject;
-
         if (!other.gameObject.CompareTag("Player")) return;
-
         BridgeDataOnCollision(enemy);
-
-        print(enemy);
-
-        //SceneManager.LoadScene("CombatScene");
+        SceneManager.LoadScene("CombatScene");
     }
 
     void Awake()
     {
-        //Get the stored data
+        enemy = this.gameObject;
+
+
+        GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
+
+        DontDestroyOnLoad(enemyBridgeData);
+    }
+
+    void Start()
+    {
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgeData = enemyBridgeData.GetComponent<EnemyBridgeData>();
-        
-        //Do not destroy the needed data
-        DontDestroyOnLoad(enemyBridgeData);
-        
+        EnemyContainerData myData = enemy.GetComponent<EnemyContainerData>();
+
         if (bridgeData.enemyDead == true)
         {
-            Destroy(this.gameObject);
+            if (myData.uniqueID == bridgeData.BridgeUniqueID)
+            {
+                Destroy(enemy);
 
-            //Erase the data bcs this was the huge problem
-            bridgeData.BridgeEnemyATK = 0f;
-            bridgeData.BridgeEnemyHP = 0f; 
-            bridgeData.BridgeEnemyID = 0;
-            bridgeData.BridgeEnemyName = "";
-            bridgeData.BridgeUniqueID = 0;
-            bridgeData.enemyDead = false;  
+                bridgeData.BridgeEnemyATK = 0f;
+                bridgeData.BridgeEnemyHP = 0f;
+                bridgeData.BridgeEnemyID = 0;
+                bridgeData.BridgeEnemyName = "";
+                bridgeData.BridgeUniqueID = 0;
+                bridgeData.enemyDead = false;
+            }
         }
     }
+
+
     private void BridgeDataOnCollision(GameObject enemy)
     {
         EnemyContainerData enemyData = enemy.GetComponent<EnemyContainerData>();

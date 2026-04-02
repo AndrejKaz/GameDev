@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour
     private bool isAlive = true;
     private bool isDead = false;
 
-    void Awake()
+    void Start()
     {
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
@@ -36,12 +36,6 @@ public class EnemyScript : MonoBehaviour
         enemyATK = bridgedData.BridgeEnemyATK;
         enemyID = bridgedData.BridgeEnemyID;
         uniqueID = bridgedData.BridgeUniqueID;      
-
-        // print("My name is: " + enemyName);
-        // print("My HP is: " + enemyHP);
-        // print("My ATK is: " + enemyATK);
-        // print("My ID is: " + enemyID);
-        // print("MY UNIQUE ID IS: " + uniqueID);
     }
 
     void Update()

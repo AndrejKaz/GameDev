@@ -32,7 +32,6 @@ public class EnemyManagement : MonoBehaviour
         Vector3 spawnPos = ground.transform.position + Vector3.up * 1f;
         for(int i = 0; i < enemyNum; i++)
         {
-        
             //Create an enemy
             GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
 
@@ -69,7 +68,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Slime";
                 enemyData.enemyHP = 30f;
                 enemyData.enemyATK = 5f;
-                enemyData.uniqueID = 1;
+                enemyData.uniqueID = index;
             break;
 
             case 1:
@@ -77,7 +76,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Skeleton";
                 enemyData.enemyHP = 0.5f;
                 enemyData.enemyATK = 12f;
-                enemyData.uniqueID = 2;
+                enemyData.uniqueID = index;
             break;
 
             case 2:
@@ -85,7 +84,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Fire Spirit";
                 enemyData.enemyHP = 40f;
                 enemyData.enemyATK = 17f;
-                enemyData.uniqueID = 3;
+                enemyData.uniqueID = index;
             break;
 
             case 3:
@@ -93,7 +92,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Golem";
                 enemyData.enemyHP = 85f;
                 enemyData.enemyATK = 30f;
-                enemyData.uniqueID = 4;
+                enemyData.uniqueID = index;
             break;
         }
     }
