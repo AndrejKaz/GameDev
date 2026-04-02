@@ -1,63 +1,68 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class ZoneDetection : MonoBehaviour
 {
-    /*[===References===]*/
     public EnemyDetection enemyDetection;
-    public PlayerController playerController;
 
+    private EnemyManagement enemyManagement;
+        
     /*[===Variables===]*/
-    private Vector3 playerPos = new Vector3(0f,0f,0f);
+    public PlayerController playerController;
     private GameObject enemy;
+    private Vector3 playerPos = new Vector3(0f, 0f, 0f);
     private float enemyChaseSpeed = 0f;
-    public bool inZone = false;
     public bool enemyTeritory = false;
 
-
     void Start()
-    {   
-        //Get the game object bcs otherwise it will assign it null
-        enemy = GameObject.FindWithTag("Enemy");
+    {
+        GameObject wallGroup = this.gameObject;
 
-        if(enemy != null) enemyDetection = enemy.GetComponent<EnemyDetection>();
-        else Debug.LogWarning("Enemy not found!");
+        enemy = wallGroup.transform.parent.Find("Enemy(Clone)").gameObject;
+
+        enemyManagement = wallGroup.transform.parent.GetComponent<EnemyManagement>();
+
+        if(enemyManagement != null) playerController = enemyManagement.playerController;
     }
 
     void FixedUpdate()
     {
-        StartChase();    
+        StartChase();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) inZone = true;
-        
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            inZone = false;
             enemyTeritory = true;
+            print("Player entered the zone");
         }
     }
 
-    void StartChase()
+    private void OnTriggerExit(Collider other)
     {
-        //Get the current player position
-        playerPos = playerController.rg.transform.position;     
-
-        if(!inZone && enemyTeritory)
+        if (other.CompareTag("Player"))
         {
-            enemyChaseSpeed = (enemyDetection.speed + 2f)  * Time.deltaTime;
+            enemyTeritory = false;
+            print("Player left");
+        }
+    }
+
+    //Start the enemy chase
+    public void StartChase()
+    {
+        playerPos = playerController.rg.transform.position;
+
+        if (enemyTeritory)
+        {
+            enemyChaseSpeed = (enemyDetection.speed + 2f) * Time.deltaTime;
 
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, playerPos, enemyChaseSpeed);
-            if (Vector3.Distance(enemy.transform.position,  playerPos) < 0.01f)
+
+            // Fix: instead of teleporting with *= -1, simply stop chasing once reached
+            if (Vector3.Distance(enemy.transform.position, playerPos) < 0.01f)
             {
-                //Reset position back
-                enemy.transform.position *= -1.0f;
+                enemyTeritory = false;
             }
         }
     }

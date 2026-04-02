@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6321451012882810396}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03544445, y: 1.5669751, z: 0.7030333}
+  m_LocalPosition: {x: 6.5550647, y: 1.4215422, z: 10.482986}
   m_LocalScale: {x: 0.033333335, y: 1, z: 0.033333335}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -170,6 +170,7 @@ MonoBehaviour:
   enemyName: 
   enemyHP: 0
   enemyATK: 0
+  uniqueID: 0
 --- !u!114 &-2161427930074200988
 MonoBehaviour:
   m_ObjectHideFlags: 0

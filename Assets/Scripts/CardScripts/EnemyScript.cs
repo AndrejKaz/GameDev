@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     public int enemyID;
     public string enemyName;
     public bool hasAttacked = false;
+    public int uniqueID;
     private bool isAlive = true;
     private bool isDead = false;
 
@@ -34,11 +35,13 @@ public class EnemyScript : MonoBehaviour
         enemyHP = bridgedData.BridgeEnemyHP;
         enemyATK = bridgedData.BridgeEnemyATK;
         enemyID = bridgedData.BridgeEnemyID;
+        uniqueID = bridgedData.BridgeUniqueID;      
 
-        print("My name is: " + enemyName);
-        print("My HP is: " + enemyHP);
-        print("My ATK is: " + enemyATK);
-        print("My ID is: " + enemyID);
+        // print("My name is: " + enemyName);
+        // print("My HP is: " + enemyHP);
+        // print("My ATK is: " + enemyATK);
+        // print("My ID is: " + enemyID);
+        // print("MY UNIQUE ID IS: " + uniqueID);
     }
 
     void Update()
@@ -48,8 +51,6 @@ public class EnemyScript : MonoBehaviour
             hasAttacked = true;
             StartCoroutine(EnemyHit());
         }
-        
-        
 
         EnemyLives();
         
@@ -58,6 +59,7 @@ public class EnemyScript : MonoBehaviour
             isDead = true;
             StartCoroutine(EnemyDies());
         }
+
     }
 
     private IEnumerator EnemyHit()
@@ -86,7 +88,15 @@ public class EnemyScript : MonoBehaviour
 
     private bool EnemyLives()
     {
-        if(enemyHP <= 0.0f) isAlive = false;
+        GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
+        EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
+
+
+        if(enemyHP <= 0.0f)
+        {
+            isAlive = false;
+            bridgedData.enemyDead = true;
+        }
         return isAlive;
     }
 

@@ -61,19 +61,19 @@ public class DeckManager : MonoBehaviour
             case 0:
                 data.cardName = "Spirit axe";
                 data.manaCost = 1;
-                data.cardDmg = 3.5f;
+                data.cardDmg = 350f;
                 data.cardId = 0;
                 break;
             case 1:
                 data.cardName = "Spirit wind";
                 data.manaCost = 1;
-                data.cardDmg = 4.0f;
+                data.cardDmg = 400f;
                 data.cardId = 1;
                 break;
             case 2:
                 data.cardName = "Spirit storm";
                 data.manaCost = 3;
-                data.cardDmg = 5.5f;
+                data.cardDmg = 505f;
                 data.cardId = 2;
                 break;
             case 3:

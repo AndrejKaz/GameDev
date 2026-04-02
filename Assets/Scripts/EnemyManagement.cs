@@ -6,9 +6,9 @@ public class EnemyManagement : MonoBehaviour
     /*[===Game Objects===]*/
     public GameObject enemyPrefab;
     public GameObject enemyGround;
-
     /*[===References===]*/
-    public EnemyGroundManagement enemyGroundManagement;
+    public PlayerController playerController;
+
 
     /*[===Variables===]*/
     private List<GameObject> enemyList = new (); 
@@ -18,6 +18,13 @@ public class EnemyManagement : MonoBehaviour
     void Start()
     {
         if(enemyGround == null) print("No enemy ground found");
+    }
+
+    void Awake()
+    {
+        //Assigning the player controller as a component here so i can get it for the zoneDetection
+        GameObject player = GameObject.Find("Player");     
+        playerController = player.GetComponent<PlayerController>();
     }
 
     public void CreateEnemies(GameObject ground, int index)
@@ -41,10 +48,11 @@ public class EnemyManagement : MonoBehaviour
                 //Make sure you get the ground id for this
                 SetEnemyData(enemyData, index);
 
-                print("Enemy name: " + enemyData.enemyName);
-                print("Enemy hp: " + enemyData.enemyHP);
-                print("Enemy atk: " + enemyData.enemyATK);
-                print("ENemy id: " + enemyData.enemyID);
+                // print("Enemy name: " + enemyData.enemyName);
+                // print("Enemy hp: " + enemyData.enemyHP);
+                // print("Enemy atk: " + enemyData.enemyATK);
+                // print("Enemy id: " + enemyData.enemyID);
+                // print("UNIQUE ID: " + enemyData.uniqueID);
             }
 
             //Add the new enemies in the list
@@ -54,20 +62,22 @@ public class EnemyManagement : MonoBehaviour
 
     private void SetEnemyData(EnemyContainerData enemyData,int index)
     {
-        switch (index % 4)
+        switch (index % 3)
         {
             case 0:
                 enemyData.enemyID = 0;
                 enemyData.enemyName = "Slime";
                 enemyData.enemyHP = 30f;
                 enemyData.enemyATK = 5f;
+                enemyData.uniqueID = 1;
             break;
 
             case 1:
                 enemyData.enemyID = 1;
                 enemyData.enemyName = "Skeleton";
-                enemyData.enemyHP = 56f;
+                enemyData.enemyHP = 0.5f;
                 enemyData.enemyATK = 12f;
+                enemyData.uniqueID = 2;
             break;
 
             case 2:
@@ -75,6 +85,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Fire Spirit";
                 enemyData.enemyHP = 40f;
                 enemyData.enemyATK = 17f;
+                enemyData.uniqueID = 3;
             break;
 
             case 3:
@@ -82,7 +93,9 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyName = "Golem";
                 enemyData.enemyHP = 85f;
                 enemyData.enemyATK = 30f;
+                enemyData.uniqueID = 4;
             break;
         }
     }
+
 }

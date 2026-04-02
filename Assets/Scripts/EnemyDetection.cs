@@ -1,9 +1,8 @@
 using UnityEngine;
-using UnityEngine.Rendering.RenderGraphModule;
 
 public class EnemyDetection : MonoBehaviour
 {
-    // /*[===References===]*/
+    /*[===References===]*/
     private Rigidbody rg;
 
     /*[===Variables===]*/
@@ -11,25 +10,20 @@ public class EnemyDetection : MonoBehaviour
     private int index = 0;
     public float speed = 5.0f;
 
- void Start()
-{
-    rg = GetComponent<Rigidbody>();
+    void Start()
+    {
+        rg = GetComponent<Rigidbody>();
+        rg.freezeRotation = true;
 
+        Transform waypointContainer = transform.parent.Find("TargetPoint-Group");
+        if (waypointContainer == null) return;
 
-    rg.freezeRotation = true;
-    
-    //The target points work properly now
-    Transform waypointContainer = transform.parent.Find("TargetPoint-Group");
-
-    if (waypointContainer == null) return;
-
-    //Get all target points
-    targetPoints = new GameObject[waypointContainer.childCount];
-    for (int i = 0; i < waypointContainer.childCount; i++)
-    { 
-        targetPoints[i] = waypointContainer.GetChild(i).gameObject;
+        targetPoints = new GameObject[waypointContainer.childCount];
+        for (int i = 0; i < waypointContainer.childCount; i++)
+        {
+            targetPoints[i] = waypointContainer.GetChild(i).gameObject;
+        }
     }
-}
 
     void FixedUpdate()
     {
@@ -39,10 +33,8 @@ public class EnemyDetection : MonoBehaviour
         else index = 0;
     }
 
-    //Enemy moves to given target points
     private void Move()
     {
-
         Vector3 targetPos = targetPoints[index].transform.position;
         Vector3 direction = targetPos - transform.position;
 

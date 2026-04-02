@@ -13,15 +13,33 @@ public class StartCombat : MonoBehaviour
 
         BridgeDataOnCollision(enemy);
 
-        SceneManager.LoadScene("CombatScene");
+        print(enemy);
+
+        //SceneManager.LoadScene("CombatScene");
     }
 
     void Awake()
     {
+        //Get the stored data
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
+        EnemyBridgeData bridgeData = enemyBridgeData.GetComponent<EnemyBridgeData>();
+        
+        //Do not destroy the needed data
         DontDestroyOnLoad(enemyBridgeData);
-    }
+        
+        if (bridgeData.enemyDead == true)
+        {
+            Destroy(this.gameObject);
 
+            //Erase the data bcs this was the huge problem
+            bridgeData.BridgeEnemyATK = 0f;
+            bridgeData.BridgeEnemyHP = 0f; 
+            bridgeData.BridgeEnemyID = 0;
+            bridgeData.BridgeEnemyName = "";
+            bridgeData.BridgeUniqueID = 0;
+            bridgeData.enemyDead = false;  
+        }
+    }
     private void BridgeDataOnCollision(GameObject enemy)
     {
         EnemyContainerData enemyData = enemy.GetComponent<EnemyContainerData>();
@@ -35,6 +53,7 @@ public class StartCombat : MonoBehaviour
         bridgedData.BridgeEnemyName = enemyData.enemyName;
         bridgedData.BridgeEnemyHP = enemyData.enemyHP;
         bridgedData.BridgeEnemyATK = enemyData.enemyATK;
-
+        bridgedData.BridgeUniqueID = enemyData.uniqueID;
+        bridgedData.enemyDead = false;
     }
 }
