@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class ZoneDetection : MonoBehaviour
 {
+    /*[===REFECERENES===]*/
     public EnemyDetection enemyDetection;
-
     private EnemyManagement enemyManagement;
         
-    /*[===Variables===]*/
+    /*[===VARIABLES===]*/
     public PlayerController playerController;
     private GameObject enemy;
     private Vector3 playerPos = new Vector3(0f, 0f, 0f);

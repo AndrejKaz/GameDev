@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class EnemyGroundManagement : MonoBehaviour
 {
-    /*[===References===]*/
+    /*[===REFERENCES===]*/
     public GameObject enemyGroundPrefab;
     public EnemyManagement enemyManagement;
 
-    /*[===Variables===]*/
+    /*[===VARIABLES===]*/
     private List<GameObject> enemyGroundList = new ();
-    private int groundNum = 8;
+    private int groundNum = 13;
     private bool hasCreated = false;
     public int groundId = 0;
 
@@ -36,48 +36,77 @@ public class EnemyGroundManagement : MonoBehaviour
         {
             groundId = i;
 
-
             switch (i)
             {
                 case 0:
-                    spawnPos = new Vector3(-20f, 0, 30f);
+                    spawnPos = new Vector3(-20f, -0.48f, 30f);
                     ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 1: 
-                    spawnPos = new Vector3(20f, 0, 45f);
+                    spawnPos = new Vector3(20f, -0.48f, 45f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 2: 
-                    spawnPos = new Vector3(60f, 0, 10f);
+                    spawnPos = new Vector3(60f, -0.48f, 10f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 3: 
-                    spawnPos = new Vector3(45f, 0, 45f);
+                    spawnPos = new Vector3(45f, -0.48f, 45f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 5: 
-                    spawnPos = new Vector3(120f, 0, 80f);
+                    spawnPos = new Vector3(120f, -0.48f, 80f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 6: 
-                    spawnPos = new Vector3(80f, 0, -60f);
+                    spawnPos = new Vector3(80f, -0.48f, -60f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
                 case 7: 
-                    spawnPos = new Vector3(-80f, 0, -30f);
+                    spawnPos = new Vector3(-80f, -0.48f, -30f);
                      ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    enemyGroundList.Add(ground);
+                    enemyManagement.CreateEnemies(ground, groundId);
+                break;
+                case 8: 
+                    spawnPos = new Vector3(-45f, -0.48f, 60f);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    enemyGroundList.Add(ground);
+                    enemyManagement.CreateEnemies(ground, groundId);
+                break;
+                case 9: 
+                    spawnPos = new Vector3(100f, -0.48f, -20f);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    enemyGroundList.Add(ground);
+                    enemyManagement.CreateEnemies(ground, groundId);
+                break;
+                case 10: 
+                    spawnPos = new Vector3(-60f, -0.48f, -80f);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    enemyGroundList.Add(ground);
+                    enemyManagement.CreateEnemies(ground, groundId);
+                break;
+                case 11: 
+                    spawnPos = new Vector3(30f, -0.48f, -50f);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    enemyGroundList.Add(ground);
+                    enemyManagement.CreateEnemies(ground, groundId);
+                break;
+                case 12: 
+                    spawnPos = new Vector3(-100f, -0.48f, 20f);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;

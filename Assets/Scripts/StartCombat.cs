@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class StartCombat : MonoBehaviour
 {
+    /*[===VARIABLES===]*/
     private GameObject enemy;
 
     void OnCollisionEnter(Collision other)

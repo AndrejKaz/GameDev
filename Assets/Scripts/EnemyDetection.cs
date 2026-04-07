@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EnemyDetection : MonoBehaviour
 {
-    /*[===References===]*/
+    /*[===REFERENCES===]*/
     private Rigidbody rg;
 
-    /*[===Variables===]*/
+    /*[===VARIABLES===]*/
     private GameObject[] targetPoints;
     private int index = 0;
     public float speed = 5.0f;

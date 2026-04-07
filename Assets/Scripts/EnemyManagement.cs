@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class EnemyManagement : MonoBehaviour
 {
-    /*[===Game Objects===]*/
+    /*[===GAME OBJECTS===]*/
     public GameObject enemyPrefab;
     public GameObject enemyGround;
-    /*[===References===]*/
+
+    /*[===REFERENCES===]*/
     public PlayerController playerController;
 
-
-    /*[===Variables===]*/
+    /*[===VARIABLES===]*/
     private List<GameObject> enemyList = new (); 
     private int enemyNum = 1;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if(enemyGround == null) print("No enemy ground found");
@@ -46,12 +46,6 @@ public class EnemyManagement : MonoBehaviour
             {
                 //Make sure you get the ground id for this
                 SetEnemyData(enemyData, index);
-
-                // print("Enemy name: " + enemyData.enemyName);
-                // print("Enemy hp: " + enemyData.enemyHP);
-                // print("Enemy atk: " + enemyData.enemyATK);
-                // print("Enemy id: " + enemyData.enemyID);
-                // print("UNIQUE ID: " + enemyData.uniqueID);
             }
 
             //Add the new enemies in the list
