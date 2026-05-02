@@ -7,6 +7,7 @@ public class PlayerBridgeData : MonoBehaviour
 
     public Vector3 currPos;
     public Vector3 lastPos;
+    public int Coins;
 
     void Awake()
     {

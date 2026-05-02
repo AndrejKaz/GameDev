@@ -3964,7 +3964,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5175637287800272544}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4035,9 +4035,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ce793a93ad59840bd9f9cec6e014f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6321451012882810396, guid: 7cced7a0d6cfedb41b54d4511da46ab3, type: 3}
+  enemyPrefab:
+  - {fileID: 5701460697805389143, guid: 11a4d0e016de60140ab54309eb705111, type: 3}
+  - {fileID: 8024608190707012967, guid: db07a7505f6cbdd49b13ecf127a70792, type: 3}
+  - {fileID: 2165474986091135897, guid: 25a357c33768c13408ea0592f0b8ec6e, type: 3}
+  - {fileID: 6497093459000753103, guid: e12be8507fb2e1447914253dd7b1e7dc, type: 3}
   enemyGround: {fileID: 5175637287800272544}
-  playerController: {fileID: 0}
+  playerController: {fileID: 874517602309417803, guid: 5cdddabbf9ddb07458f956ba308547d1, type: 3}
 --- !u!1 &5293347301431593613
 GameObject:
   m_ObjectHideFlags: 0

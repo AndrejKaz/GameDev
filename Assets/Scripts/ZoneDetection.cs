@@ -15,15 +15,25 @@ public class ZoneDetection : MonoBehaviour
     public bool enemyTeritory = false;
 
     void Start()
+{
+    GameObject wallGroup = this.gameObject;
+
+    // Search siblings (children of the same ground transform)
+    Transform ground = wallGroup.transform.parent;
+    foreach (Transform child in ground)
     {
-        GameObject wallGroup = this.gameObject;
-
-        enemy = wallGroup.transform.parent.Find("Enemy(Clone)").gameObject;
-
-        enemyManagement = wallGroup.transform.parent.GetComponent<EnemyManagement>();
-
-        if(enemyManagement != null) playerController = enemyManagement.playerController;
+        if (child.CompareTag("Enemy"))
+        {
+            enemy = child.gameObject;
+            break;
+        }
     }
+
+    if (enemy == null) Debug.LogWarning("No enemy found under ground: " + ground.name);
+
+    enemyManagement = ground.GetComponent<EnemyManagement>();
+    if (enemyManagement != null) playerController = enemyManagement.playerController;
+}
 
     void FixedUpdate()
     {

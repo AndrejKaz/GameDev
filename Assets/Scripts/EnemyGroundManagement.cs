@@ -7,6 +7,7 @@ public class EnemyGroundManagement : MonoBehaviour
     public GameObject enemyGroundPrefab;
     public EnemyManagement enemyManagement;
 
+
     /*[===VARIABLES===]*/
     private List<GameObject> enemyGroundList = new ();
     private int groundNum = 13;
@@ -46,7 +47,7 @@ public class EnemyGroundManagement : MonoBehaviour
                 break;
                 case 1: 
                     spawnPos = new Vector3(20f, -0.48f, 45f);
-                     ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;
@@ -70,7 +71,7 @@ public class EnemyGroundManagement : MonoBehaviour
                 break;
                 case 6: 
                     spawnPos = new Vector3(80f, -0.48f, -60f);
-                     ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
+                    ground = Instantiate(enemyGroundPrefab, spawnPos, Quaternion.identity);
                     enemyGroundList.Add(ground);
                     enemyManagement.CreateEnemies(ground, groundId);
                 break;

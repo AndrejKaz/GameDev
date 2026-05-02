@@ -7,5 +7,4 @@ public class EnemyContainerData : MonoBehaviour
     public float enemyHP;
     public float enemyATK;
     public int uniqueID;
-    //public texture model [*SOMETHING LIKE THIS*]
 }

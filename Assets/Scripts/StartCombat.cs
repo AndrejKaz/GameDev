@@ -19,7 +19,6 @@ public class StartCombat : MonoBehaviour
     {
         enemy = this.gameObject;
 
-
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
 
         DontDestroyOnLoad(enemyBridgeData);

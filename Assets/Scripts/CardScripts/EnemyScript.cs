@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour
     /*[===REFERENCES===]*/
     public TurnCounter turnCounter;
     public PlayerScript playerScript;
+    public PlayerBridgeData playerBridgeData;
 
     /*[===VARIABLES===]*/
     public float enemyATK;
@@ -25,17 +26,24 @@ public class EnemyScript : MonoBehaviour
     private bool isAlive = true;
     private bool isDead = false;
 
+    [SerializeField] private Sprite[] enemySprites;
+
     void Start()
     {
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
 
-        //Get the data from the 3d scene
         enemyName = bridgedData.BridgeEnemyName;
         enemyHP = bridgedData.BridgeEnemyHP;
         enemyATK = bridgedData.BridgeEnemyATK;
         enemyID = bridgedData.BridgeEnemyID;
-        uniqueID = bridgedData.BridgeUniqueID;      
+        uniqueID = bridgedData.BridgeUniqueID;
+
+        if (enemySprites != null)
+        {
+            SpriteRenderer sr = Enemy.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.sprite = enemySprites[enemyID];
+        }
     }
 
     void Update()
@@ -97,6 +105,7 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator EnemyDies()
     {
         Enemy.SetActive(false);
+        if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins++;
         SceneManager.LoadScene(0);
         yield return new WaitForSeconds(2);
     }

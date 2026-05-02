@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         playerBridgeData = PlayerBridgeData.Instance; 
         rg.position = playerBridgeData.lastPos;
         rg.freezeRotation = true;
-        cameraTransform = Camera.main.transform;
+        cameraTransform = Camera.current.transform;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
