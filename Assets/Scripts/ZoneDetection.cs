@@ -29,8 +29,6 @@ public class ZoneDetection : MonoBehaviour
         }
     }
 
-    if (enemy == null) Debug.LogWarning("No enemy found under ground: " + ground.name);
-
     enemyManagement = ground.GetComponent<EnemyManagement>();
     if (enemyManagement != null) playerController = enemyManagement.playerController;
 }

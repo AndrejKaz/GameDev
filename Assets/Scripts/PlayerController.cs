@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {      
     /*[REFERENCES]*/
     public PlayerBridgeData playerBridgeData;
+    public Animator animator;
 
     /*[===VARIABLES===]*/
     public Rigidbody rg;
@@ -24,10 +25,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         playerBridgeData = PlayerBridgeData.Instance; 
         rg.position = playerBridgeData.lastPos;
         rg.freezeRotation = true;
-        cameraTransform = Camera.current.transform;
+        cameraTransform = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
         playerBridgeData.lastPos = playerBridgeData.currPos; 
         playerBridgeData.currPos = rg.transform.position;
         GetMovementInput();
+        animator.SetBool("isWalking", movementInput.magnitude > 0);
+    
         RotateCamera();
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
@@ -9,8 +10,9 @@ using UnityEngine.Timeline;
 public class EnemyScript : MonoBehaviour
 {
     /*[===GameObjects===]*/
-    [SerializeField] GameObject Enemy;
-    
+    [SerializeField] GameObject Enemy;    
+    [SerializeField] private Sprite[] enemySprites;
+
     /*[===REFERENCES===]*/
     public TurnCounter turnCounter;
     public PlayerScript playerScript;
@@ -25,13 +27,17 @@ public class EnemyScript : MonoBehaviour
     public int uniqueID;
     private bool isAlive = true;
     private bool isDead = false;
-
-    [SerializeField] private Sprite[] enemySprites;
+    [SerializeField] ParticleSystem ps;
+    private ParticleSystem.ColorOverLifetimeModule psModule;
 
     void Start()
     {
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
+
+        psModule = ps.colorOverLifetime;
+        psModule.enabled = true;
+        SetColor(uniqueID);
 
         enemyName = bridgedData.BridgeEnemyName;
         enemyHP = bridgedData.BridgeEnemyHP;
@@ -54,8 +60,8 @@ public class EnemyScript : MonoBehaviour
             StartCoroutine(EnemyHit());
         }
 
-        EnemyLives();
-        
+        EnemyLives();        
+
         if(isAlive == false && !isDead)
         {
             isDead = true;
@@ -77,7 +83,12 @@ public class EnemyScript : MonoBehaviour
         playerScript.playerHP -= enemyATK;
 
         //Pass turn from enemy
+        psModule.color = Color.red;
+
         yield return new WaitForSeconds(1);
+
+        psModule.color = SetColor(uniqueID);
+
         turnCounter.turnIncr();
     }
 
@@ -93,7 +104,6 @@ public class EnemyScript : MonoBehaviour
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
 
-
         if(enemyHP <= 0.0f)
         {
             isAlive = false;
@@ -108,5 +118,17 @@ public class EnemyScript : MonoBehaviour
         if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins++;
         SceneManager.LoadScene(0);
         yield return new WaitForSeconds(2);
+    }
+
+    private Color SetColor(int enemyId)
+    {
+        switch (enemyId)
+        {
+            case 0: return Color.green;
+            case 1: return Color.cyan;
+            case 2: return Color.black;
+            case 3: return Color.gray;
+            default: return Color.white;
+        }
     }
 }
