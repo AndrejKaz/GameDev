@@ -758,7 +758,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9f7968e45779fde4fb37b24dddebef35, type: 3}
   turnCounter: {fileID: 1377738025}
   playerScript: {fileID: 1480740517}
-  playerBridgeData: {fileID: 838207228}
   enemyATK: 0
   enemyHP: 100
   enemyID: 0
@@ -766,6 +765,7 @@ MonoBehaviour:
   hasAttacked: 0
   uniqueID: 0
   ps: {fileID: 1955580527}
+  animator: {fileID: 513832299}
 --- !u!114 &513832298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +783,7 @@ MonoBehaviour:
   handView: {fileID: 1808339985}
   playerScript: {fileID: 1480740517}
   turnCounter: {fileID: 1377738025}
+  enemyBridgeData: {fileID: 838207229}
 --- !u!95 &513832299
 Animator:
   serializedVersion: 7
@@ -1249,15 +1250,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c4c122198ee46c419facb6d6044e048, type: 3}
---- !u!114 &838207228 stripped
+--- !u!114 &838207229 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1292341577547171791, guid: 5c4c122198ee46c419facb6d6044e048, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6074914267649317265, guid: 5c4c122198ee46c419facb6d6044e048, type: 3}
   m_PrefabInstance: {fileID: 838207227}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cadcdfd8e923bb44bdc6d46a24f9e09, type: 3}
+  m_Script: {fileID: 11500000, guid: 478a07325c26dfc4092caa7d0674c760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1277985647
@@ -2501,7 +2502,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 2
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -2561,7 +2562,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2614,7 +2615,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2732,7 +2733,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3049,14 +3050,14 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3110,7 +3111,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 45
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -3196,7 +3197,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 1.5
       mode: 0
       spread: 0
       speed:
@@ -3253,13 +3254,13 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
-      mode: 0
-      spread: 0
+      value: 180
+      mode: 2
+      spread: 1
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 5
         minScalar: 1
         maxCurve:
           serializedVersion: 2

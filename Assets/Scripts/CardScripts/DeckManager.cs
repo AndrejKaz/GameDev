@@ -61,61 +61,61 @@ public class DeckManager : MonoBehaviour
             case 0:
                 data.cardName = "Spirit axe";
                 data.manaCost = 1;
-                data.cardDmg = 350f;
+                data.cardDmg = 30f;
                 data.cardId = 0;
                 break;
             case 1:
                 data.cardName = "Spirit wind";
                 data.manaCost = 1;
-                data.cardDmg = 400f;
+                data.cardDmg = 40f;
                 data.cardId = 1;
                 break;
             case 2:
                 data.cardName = "Spirit storm";
                 data.manaCost = 3;
-                data.cardDmg = 505f;
+                data.cardDmg = 45f;
                 data.cardId = 2;
                 break;
             case 3:
                 data.cardName = "Dark hole";
                 data.manaCost = 10;
-                data.cardDmg = 20.0f;
+                data.cardDmg = 100f;
                 data.cardId = 3;
                 break;
             case 4:
                 data.cardName = "Spirit arrow";
                 data.manaCost = 4;
-                data.cardDmg = 8.5f;
+                data.cardDmg = 60f;
                 data.cardId = 4;
                 break;
             case 5:
                 data.cardName = "Eye of the beholder";
                 data.manaCost = 5;
-                data.cardDmg = 7f;
+                data.cardDmg = 70f;
                 data.cardId = 5;
                 break;
             case 6:
-                data.cardName = "Fairy Potion";
+                data.cardName = "Fairy potion";
                 data.manaCost = 6;
-                data.cardDmg = 3f;
+                data.cardDmg = 30f;
                 data.cardId = 6;
                 break;
             case 7:
                 data.cardName = "Fairy wand";
                 data.manaCost = 4;
-                data.cardDmg = 3.5f;
+                data.cardDmg = 60f;
                 data.cardId = 7;
                 break;
             case 8:
                 data.cardName = "Fireball";
                 data.manaCost = 5;
-                data.cardDmg = 7.0f;
+                data.cardDmg = 75f;
                 data.cardId = 8;
                 break;
             case 9:
                 data.cardName = "Crystal golem";
                 data.manaCost = 7;
-                data.cardDmg = 12.3f;
+                data.cardDmg = 85f;
                 data.cardId = 9;
                 break;
         }

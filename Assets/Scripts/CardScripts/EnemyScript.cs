@@ -16,7 +16,6 @@ public class EnemyScript : MonoBehaviour
     /*[===REFERENCES===]*/
     public TurnCounter turnCounter;
     public PlayerScript playerScript;
-    public PlayerBridgeData playerBridgeData;
 
     /*[===VARIABLES===]*/
     public float enemyATK;
@@ -29,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     private bool isDead = false;
     [SerializeField] ParticleSystem ps;
     private ParticleSystem.ColorOverLifetimeModule psModule;
+    public Animator animator;
 
     void Start()
     {
@@ -84,12 +84,12 @@ public class EnemyScript : MonoBehaviour
 
         //Pass turn from enemy
         psModule.color = Color.red;
-
+        animator.SetTrigger("enemyHit"); 
+        
         yield return new WaitForSeconds(1);
-
         psModule.color = SetColor(uniqueID);
 
-        turnCounter.turnIncr();
+        turnCounter.turnIncr();        
     }
 
     public float EnemyDefOnHit()
@@ -115,7 +115,10 @@ public class EnemyScript : MonoBehaviour
     private IEnumerator EnemyDies()
     {
         Enemy.SetActive(false);
-        if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins++;
+
+        int coinDrop = UnityEngine.Random.Range(1, 5);
+
+        if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins += coinDrop;
         SceneManager.LoadScene(0);
         yield return new WaitForSeconds(2);
     }

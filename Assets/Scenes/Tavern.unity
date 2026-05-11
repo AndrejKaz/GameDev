@@ -786,6 +786,10 @@ PrefabInstance:
       propertyPath: playerBridgeData
       value: 
       objectReference: {fileID: 1077056009}
+    - target: {fileID: 5774404883822431074, guid: 5cdddabbf9ddb07458f956ba308547d1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7170371999207278788, guid: 5cdddabbf9ddb07458f956ba308547d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.055886984

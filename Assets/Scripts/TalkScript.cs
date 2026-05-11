@@ -16,12 +16,12 @@ public class TalkScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            TMP.text = "You need 20 coins so you can buy a fish";
+            TMP.text = "You need 20 coins so you can buy a beer";
         }
 
         if (other.gameObject.CompareTag("Player") && currCoins >= 20)
         {
-            TMP.text = "YAYYY YOU GOT THE FISH THE SILLY GOOBER IS HAPPY";
+            TMP.text = "You got the beer bottoms up.";
         }
     }
 
