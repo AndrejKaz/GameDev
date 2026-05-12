@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,11 +13,16 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rg;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float sprintSpeed = 10.0f;
+    [SerializeField] AudioClip walkClip;
+    [SerializeField] AudioSource audioSource;
+    private float footstepInterval = 0.5f;  
     private float currentSpeed = 0f;
     private float mouseSensitivity = 2.0f;
     private float verticalRotation = 0.0f;
     private Transform cameraTransform;
     private Vector3 movementInput;
+    private bool isWalking = false;
+    private float footstepTimer = 0f;
 
     void Awake()
     {
@@ -25,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
         playerBridgeData = PlayerBridgeData.Instance; 
         rg.position = playerBridgeData.lastPos;
         rg.freezeRotation = true;
@@ -38,12 +44,11 @@ public class PlayerController : MonoBehaviour
     {
         playerBridgeData.lastPos = playerBridgeData.currPos; 
         playerBridgeData.currPos = rg.transform.position;
-        GetMovementInput();
-        animator.SetBool("isWalking", movementInput.magnitude > 0);
-    
+
+        GetMovementInput(); 
+        HandleFootstepSound();
         RotateCamera();
     }
-
 
     void FixedUpdate()
     {
@@ -62,23 +67,36 @@ public class PlayerController : MonoBehaviour
             movementInput.x -= 1;
         if (Input.GetKey(KeyCode.D))
             movementInput.x += 1;   
+
+        isWalking = movementInput.magnitude > 0;
+        animator.SetBool("isWalking", isWalking);
+    }
+
+    private void HandleFootstepSound()
+    {
+        if (isWalking && !audioSource.isPlaying)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                audioSource.clip = walkClip;
+                audioSource.Play();
+                footstepTimer = footstepInterval;
+            }
+        }
+        else footstepTimer = 0f;
     }
 
     private void Movement()
     {
         currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : speed;
         
-        //Make sure there is no inverse movement when looking with the camera
         if (movementInput.magnitude > 0)
         {
-            //Get the forward direction relative to where the character is facing
             Vector3 forward = transform.forward;
             Vector3 right = transform.right;
             
-            //Make movement relative to character's rotation
             Vector3 moveDirection = (forward * movementInput.z + right * movementInput.x).normalized;
-            
-            //Apply movement
             Vector3 targetVelocity = moveDirection * currentSpeed;
             
             rg.linearVelocity = targetVelocity;

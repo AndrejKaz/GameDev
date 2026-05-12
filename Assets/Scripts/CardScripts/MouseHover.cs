@@ -1,36 +1,38 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class MouseHover : MonoBehaviour
 {
     [SerializeField] GameObject card;
     [SerializeField] float hoverMultiplier = 1.5f;
     [SerializeField] float animationSpeed = 10f;
+    [SerializeField] AudioClip hoverClip;
+    private AudioSource audioSource;
 
     private Vector3 originalScale;
     private Vector3 targetScale;
 
     void Start()
     {
+        audioSource = this.gameObject.GetComponent<AudioSource>();
         originalScale = card.transform.localScale;
         targetScale = originalScale;
     }
 
     void Update()
     {
-        card.transform.localScale = Vector3.Lerp(
-            card.transform.localScale,
-            targetScale,
-            Time.deltaTime * animationSpeed
-        );
+        card.transform.localScale = Vector3.Lerp(card.transform.localScale,targetScale,Time.deltaTime * animationSpeed);
     }
 
     void OnMouseOver()
     {
         targetScale = originalScale * hoverMultiplier;
+        audioSource.clip = hoverClip;
+        audioSource.Play();
     }
 
     void OnMouseExit()
     {
-        targetScale = originalScale;
+        targetScale = originalScale;   
     }
 }

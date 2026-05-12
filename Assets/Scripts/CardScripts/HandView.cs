@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -13,8 +14,8 @@ public class HandView : MonoBehaviour
     /*[===VARIABLES===]*/
     [SerializeField] private int maxHandSize = 9;
     [SerializeField] private float animationDuration = 0.25f;
-
-    /*[===GAMEOBJECTS===]*/
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip hoverClip;
     private List<GameObject> handCards = new List<GameObject>();
 
     private void Start()
@@ -34,7 +35,6 @@ public class HandView : MonoBehaviour
             deckManager.deckList.RemoveAt(0);
             card.transform.SetParent(hand.transform, true);
             card.transform.localScale = new Vector3(1.0f, 1.5f, 1.0f);
-
         }
 
         UpdateCardPosition();
@@ -91,6 +91,7 @@ public class HandView : MonoBehaviour
             float smoothT = t * t * (3f - 2f * t);
             card.transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
             card.transform.rotation = Quaternion.Slerp(startRot, targetRot, smoothT);
+
             yield return null;
         }
 

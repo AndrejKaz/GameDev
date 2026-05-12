@@ -80,7 +80,7 @@ public class EnemyManagement : MonoBehaviour
             case 3:
                 enemyData.enemyID = 3;
                 enemyData.enemyName = "Golem";
-                enemyData.enemyHP = 85f;
+                enemyData.enemyHP = 70f;
                 enemyData.enemyATK = 30f;
                 enemyData.uniqueID = index;
                 break;

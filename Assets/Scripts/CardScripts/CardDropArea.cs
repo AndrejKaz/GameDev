@@ -23,7 +23,6 @@ public class CardDropArea : MonoBehaviour
             return;
         }
 
-
         //For some reason bcs of Fiary Wings effect you need to remove the cards again 
         handView.RemoveCard(CardDrag.draggedCard.gameObject);
         Destroy(CardDrag.draggedCard.gameObject);
@@ -33,9 +32,10 @@ public class CardDropArea : MonoBehaviour
         if (enemyScript.enemyHP >= 100f) enemyScript.enemyHP -= cardData.cardDmg / 10f + (enemyBridgeData.BridgeEnemyATK / 2);
         enemyScript.enemyHP -= cardData.cardDmg / 10f + (enemyBridgeData.BridgeEnemyATK / 2);
 
+        enemyScript.slider.value = enemyScript.enemyHP;
+
         CardEffect(cardData.cardName);
 
-        print(enemyScript.enemyHP);
        
         handView.RemoveCard(CardDrag.draggedCard.gameObject);
         Destroy(CardDrag.draggedCard.gameObject);
@@ -65,7 +65,7 @@ public class CardDropArea : MonoBehaviour
     }
     private void EyeOfTheBeholder()
     {
-        float lifeSteal = enemyScript.EnemyDefOnHit();
+        float lifeSteal = enemyScript.enemyHP;
         playerScript.playerHP += lifeSteal;
         turnCounter.turnCounter += 2;
     }
@@ -76,7 +76,6 @@ public class CardDropArea : MonoBehaviour
     }
     private void FairyWand()
     {
-        handView.DrawCard();
         handView.DrawCard();
         playerScript.manaCounter += 4;
     }

@@ -5,6 +5,7 @@ using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 
 public class EnemyScript : MonoBehaviour
@@ -27,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     private bool isAlive = true;
     private bool isDead = false;
     [SerializeField] ParticleSystem ps;
-    private ParticleSystem.ColorOverLifetimeModule psModule;
+    public Slider slider;
     public Animator animator;
 
     void Start()
@@ -35,15 +36,12 @@ public class EnemyScript : MonoBehaviour
         GameObject enemyBridgeData = GameObject.FindGameObjectWithTag("BridgeData");
         EnemyBridgeData bridgedData = enemyBridgeData.GetComponent<EnemyBridgeData>();
 
-        psModule = ps.colorOverLifetime;
-        psModule.enabled = true;
-        SetColor(uniqueID);
-
         enemyName = bridgedData.BridgeEnemyName;
         enemyHP = bridgedData.BridgeEnemyHP;
         enemyATK = bridgedData.BridgeEnemyATK;
         enemyID = bridgedData.BridgeEnemyID;
         uniqueID = bridgedData.BridgeUniqueID;
+        slider.maxValue = enemyHP;
 
         if (enemySprites != null)
         {
@@ -81,13 +79,12 @@ public class EnemyScript : MonoBehaviour
     
 
         playerScript.playerHP -= enemyATK;
+        playerScript.slider.value = playerScript.playerHP;
 
         //Pass turn from enemy
-        psModule.color = Color.red;
         animator.SetTrigger("enemyHit"); 
         
         yield return new WaitForSeconds(1);
-        psModule.color = SetColor(uniqueID);
 
         turnCounter.turnIncr();        
     }
@@ -123,15 +120,4 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(2);
     }
 
-    private Color SetColor(int enemyId)
-    {
-        switch (enemyId)
-        {
-            case 0: return Color.green;
-            case 1: return Color.cyan;
-            case 2: return Color.black;
-            case 3: return Color.gray;
-            default: return Color.white;
-        }
-    }
 }
