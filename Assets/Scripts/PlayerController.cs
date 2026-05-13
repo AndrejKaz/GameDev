@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float sprintSpeed = 10.0f;
     [SerializeField] AudioClip walkClip;
     [SerializeField] AudioSource audioSource;
-    private float footstepInterval = 0.5f;  
     private float currentSpeed = 0f;
     private float mouseSensitivity = 2.0f;
     private float verticalRotation = 0.0f;
     private Transform cameraTransform;
     private Vector3 movementInput;
     private bool isWalking = false;
-    private float footstepTimer = 0f;
 
     void Awake()
     {
@@ -58,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void GetMovementInput()
     {
         movementInput = Vector3.zero;
+        isWalking = true;
         
         if (Input.GetKey(KeyCode.W))
             movementInput.z += 1;
@@ -76,15 +75,13 @@ public class PlayerController : MonoBehaviour
     {
         if (isWalking && !audioSource.isPlaying)
         {
-            footstepTimer -= Time.deltaTime;
-            if (footstepTimer <= 0f)
-            {
-                audioSource.clip = walkClip;
-                audioSource.Play();
-                footstepTimer = footstepInterval;
-            }
+            audioSource.clip = walkClip;
+            audioSource.Play();
         }
-        else footstepTimer = 0f;
+        else if (!isWalking && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
     }
 
     private void Movement()

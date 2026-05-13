@@ -38,12 +38,10 @@ public class CardDrag : MonoBehaviour
 
         if(hitCol != null)
         {
-            //CARD DROP AREA
+    
             cardDropArea.CardDrop();
         }
-        {
-            Card.transform.position = startingPos;
-        }
+        Card.transform.position = startingPos;
     }
 
     public Vector3 GetMousePosInWorld()

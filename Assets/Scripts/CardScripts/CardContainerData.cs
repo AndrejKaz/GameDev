@@ -7,6 +7,7 @@ public class CardContainerData : MonoBehaviour
     public int cardId;
     public string cardName;
     public SpriteRenderer spriteRenderer;
+    public string cardEffect;
 
     public void Awake()
     {

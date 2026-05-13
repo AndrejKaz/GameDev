@@ -27,7 +27,8 @@ public class EnemyScript : MonoBehaviour
     public int uniqueID;
     private bool isAlive = true;
     private bool isDead = false;
-    [SerializeField] ParticleSystem ps;
+    [SerializeField] AudioClip hitClip;
+    private AudioSource audioSource;
     public Slider slider;
     public Animator animator;
 
@@ -76,15 +77,21 @@ public class EnemyScript : MonoBehaviour
         enemyATK = UnityEngine.Random.Range(5f, 10f);
 
         if(rand == 1) playerScript.playerHP -= (enemyATK + critAtk);
-    
+        
+        audioSource = GetComponent<AudioSource>();
 
         playerScript.playerHP -= enemyATK;
         playerScript.slider.value = playerScript.playerHP;
+
+        audioSource.clip = hitClip;
+        audioSource.Play();
 
         //Pass turn from enemy
         animator.SetTrigger("enemyHit"); 
         
         yield return new WaitForSeconds(1);
+
+        audioSource.Stop();
 
         turnCounter.turnIncr();        
     }
@@ -116,6 +123,7 @@ public class EnemyScript : MonoBehaviour
         int coinDrop = UnityEngine.Random.Range(1, 5);
 
         if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins += coinDrop;
+        
         SceneManager.LoadScene(0);
         yield return new WaitForSeconds(2);
     }

@@ -27,7 +27,7 @@ public class EnemyManagement : MonoBehaviour
 
 
     public void CreateEnemies(GameObject ground, int index)
-{
+    {
     Vector3 spawnPos = ground.transform.position + Vector3.up * 1f;
 
     for (int i = 0; i < enemyNum; i++)
@@ -57,7 +57,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyID = 0;
                 enemyData.enemyName = "Slime";
                 enemyData.enemyHP = 30f;
-                enemyData.enemyATK = 5f;
+                enemyData.enemyATK = 8f;
                 enemyData.uniqueID = index;
                 break;
 
@@ -73,7 +73,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyID = 2;
                 enemyData.enemyName = "Fire Spirit";
                 enemyData.enemyHP = 40f;
-                enemyData.enemyATK = 17f;
+                enemyData.enemyATK = 25f;
                 enemyData.uniqueID = index;
                 break;
 
@@ -81,7 +81,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyID = 3;
                 enemyData.enemyName = "Golem";
                 enemyData.enemyHP = 70f;
-                enemyData.enemyATK = 30f;
+                enemyData.enemyATK = 20f;
                 enemyData.uniqueID = index;
                 break;
         }

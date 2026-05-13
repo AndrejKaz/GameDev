@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -8,12 +9,15 @@ public class MouseHover : MonoBehaviour
     [SerializeField] float animationSpeed = 10f;
     [SerializeField] AudioClip hoverClip;
     private AudioSource audioSource;
+    [SerializeField] TextMeshPro TMP;
+    private CardContainerData cardData;
 
     private Vector3 originalScale;
     private Vector3 targetScale;
 
     void Start()
     {
+        cardData = card.GetComponent<CardContainerData>();
         audioSource = this.gameObject.GetComponent<AudioSource>();
         originalScale = card.transform.localScale;
         targetScale = originalScale;
@@ -26,6 +30,7 @@ public class MouseHover : MonoBehaviour
 
     void OnMouseOver()
     {
+        TMP.text = cardData.cardEffect;
         targetScale = originalScale * hoverMultiplier;
         audioSource.clip = hoverClip;
         audioSource.Play();
@@ -34,5 +39,6 @@ public class MouseHover : MonoBehaviour
     void OnMouseExit()
     {
         targetScale = originalScale;   
+        TMP.text = "";
     }
 }
