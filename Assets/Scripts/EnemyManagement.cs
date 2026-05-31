@@ -57,23 +57,23 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyID = 0;
                 enemyData.enemyName = "Slime";
                 enemyData.enemyHP = 30f;
-                enemyData.enemyATK = 8f;
+                enemyData.enemyATK = 14f;
                 enemyData.uniqueID = index;
                 break;
 
             case 1:
                 enemyData.enemyID = 1;
                 enemyData.enemyName = "Skeleton";
-                enemyData.enemyHP = 50f;
-                enemyData.enemyATK = 12f;
+                enemyData.enemyHP = 45f;
+                enemyData.enemyATK = 18f;
                 enemyData.uniqueID = index;
                 break;
 
             case 2:
                 enemyData.enemyID = 2;
                 enemyData.enemyName = "Fire Spirit";
-                enemyData.enemyHP = 40f;
-                enemyData.enemyATK = 25f;
+                enemyData.enemyHP = 50f;
+                enemyData.enemyATK = 30f;
                 enemyData.uniqueID = index;
                 break;
 
@@ -81,7 +81,7 @@ public class EnemyManagement : MonoBehaviour
                 enemyData.enemyID = 3;
                 enemyData.enemyName = "Golem";
                 enemyData.enemyHP = 70f;
-                enemyData.enemyATK = 20f;
+                enemyData.enemyATK = 26f;
                 enemyData.uniqueID = index;
                 break;
         }

@@ -43,21 +43,15 @@ public class PlayerController : MonoBehaviour
         playerBridgeData.lastPos = playerBridgeData.currPos; 
         playerBridgeData.currPos = rg.transform.position;
 
-        GetMovementInput(); 
         HandleFootstepSound();
         RotateCamera();
-    }
-
-    void FixedUpdate()
-    {
+        GetMovementInput(); 
         Movement();
     }
 
     private void GetMovementInput()
     {
         movementInput = Vector3.zero;
-        isWalking = true;
-        
         if (Input.GetKey(KeyCode.W))
             movementInput.z += 1;
         if (Input.GetKey(KeyCode.S))
@@ -95,8 +89,8 @@ public class PlayerController : MonoBehaviour
             
             Vector3 moveDirection = (forward * movementInput.z + right * movementInput.x).normalized;
             Vector3 targetVelocity = moveDirection * currentSpeed;
-            
             rg.linearVelocity = targetVelocity;
+            isWalking = true;
         }
         else
         {
@@ -104,6 +98,7 @@ public class PlayerController : MonoBehaviour
             velocity.x = 0;
             velocity.z = 0;
             rg.linearVelocity = velocity;
+            isWalking = false;
         }
     }
 

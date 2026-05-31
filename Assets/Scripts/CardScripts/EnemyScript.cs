@@ -124,7 +124,7 @@ public class EnemyScript : MonoBehaviour
 
         if (PlayerBridgeData.Instance != null) PlayerBridgeData.Instance.Coins += coinDrop;
         
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("IslandScene");
         yield return new WaitForSeconds(2);
     }
 

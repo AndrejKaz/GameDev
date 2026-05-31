@@ -58,45 +58,40 @@ public class CardDropArea : MonoBehaviour
     }
     private void SpiritStorm()
     {
-        int randomMana = Random.Range(1, 5);
+        int randomMana = Random.Range(3, 5);
         playerScript.manaCounter += randomMana;
     }
     private void SpiritArrow()
     {
         int rand = Random.Range(1, 2);
-        float critDmg = Random.Range(8f, 10f);
+        float critDmg = Random.Range(5f, 7f);
         if (rand == 1) enemyScript.enemyHP -= critDmg;
-        playerScript.manaCounter += 6;
+        playerScript.manaCounter += 5;
     }
     private void EyeOfTheBeholder()
     {
         float lifeSteal = Random.Range(enemyScript.enemyHP -5f, enemyScript.enemyHP);
         playerScript.playerHP += lifeSteal;
-        turnCounter.turnCounter += 2;
     }
     private void FairyPotion()
-    {
-        turnCounter.turnCounter += 2;
+    {   
+        handView.DrawCard();
         playerScript.manaCounter += 6;
     }
     private void FairyWand()
     {
         handView.DrawCard();
         playerScript.manaCounter += 4;
-        turnCounter.turnCounter += 2;
     }
     private void FireBall()
     {
         float burn = Random.Range(10, 15);
-        turnCounter.turnCounter += 2;
         enemyScript.enemyHP -= burn;
     }
 
     private void CrystalGolem()
     {
-        float stun = 10f;
-        turnCounter.turnCounter += 2;
-        playerScript.manaCounter += 2;
+        float stun = Random.Range(13, 17);
         enemyScript.enemyHP -= stun;
     }
 
