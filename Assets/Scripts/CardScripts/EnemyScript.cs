@@ -71,8 +71,7 @@ public class EnemyScript : MonoBehaviour
 
     private IEnumerator EnemyHit()
     {
-        //Get a crit chance which is 1 in 5 and make a crit atk
-        int rand = UnityEngine.Random.Range(0,6);
+        int rand = UnityEngine.Random.Range(0,4);
         float critAtk = enemyATK / 2;
         enemyATK = UnityEngine.Random.Range(5f, 10f);
 

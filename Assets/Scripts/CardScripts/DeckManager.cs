@@ -61,21 +61,21 @@ public class DeckManager : MonoBehaviour
             case 0:
                 data.cardName = "Spirit axe";
                 data.manaCost = 1;
-                data.cardDmg = 20f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 15f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 0;
                 data.cardEffect = "SPIRIT SPELL: +I MANA";
                 break;
             case 1:
                 data.cardName = "Spirit wind";
                 data.manaCost = 1;
-                data.cardDmg = 25f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 20f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 1;
                 data.cardEffect = "SPIRIT SPELL: +I MANA";
                 break;
             case 2:
                 data.cardName = "Spirit storm";
                 data.manaCost = 3;
-                data.cardDmg = 35f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 30f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 2;
                 data.cardEffect = "SPIRIT SPELL: RANDOM MANA";
                 break;
@@ -89,42 +89,42 @@ public class DeckManager : MonoBehaviour
             case 4:
                 data.cardName = "Spirit arrow";
                 data.manaCost = 4;
-                data.cardDmg = 45f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 35f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 4;
                 data.cardEffect = "SPIRIT SPELL: +I MANA";
                 break;
             case 5:
                 data.cardName = "Eye of the beholder";
                 data.manaCost = 5;
-                data.cardDmg = 70f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 60f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 5;
                 data.cardEffect = "EYE OF THE BEHOLDER: LIFEDRAIN";
                 break;
             case 6:
                 data.cardName = "Fairy potion";
                 data.manaCost = 6;
-                data.cardDmg = 20f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 10f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 6;
                 data.cardEffect = "FAIRY SPELL: DRAW A CARD";
                 break;
             case 7:
                 data.cardName = "Fairy wand";
                 data.manaCost = 4;
-                data.cardDmg = 20f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 10f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 7;
                 data.cardEffect = "FAIRY SPELL: DRAW A CARD";
                 break;
             case 8:
                 data.cardName = "Fireball";
                 data.manaCost = 5;
-                data.cardDmg = 70f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 60f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 8;
                 data.cardEffect = "FIREBALL: BURN (BONUS DMG)";
                 break;
             case 9:
                 data.cardName = "Crystal golem";
                 data.manaCost = 7;
-                data.cardDmg = 85f + PlayerBridgeData.Instance.dmgBoost + 3; 
+                data.cardDmg = 75f + PlayerBridgeData.Instance.dmgBoost + 3; 
                 data.cardId = 9;
                 data.cardEffect = "GOLEM: STUN (BONUS DMG)";
                 break;

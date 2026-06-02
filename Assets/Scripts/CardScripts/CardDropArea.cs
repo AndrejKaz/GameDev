@@ -18,8 +18,8 @@ public class CardDropArea : MonoBehaviour
     public void CardDrop()
     {
         if (CardDrag.draggedCard == null) return;
-        
-        CardContainerData cardData = CardDrag.draggedCard.GetComponent<CardContainerData>();        
+
+        CardContainerData cardData = CardDrag.draggedCard.GetComponent<CardContainerData>();
 
         if (cardData.manaCost > playerScript.manaCounter)
         {
@@ -27,24 +27,21 @@ public class CardDropArea : MonoBehaviour
             return;
         }
 
-        //For some reason bcs of Fiary Wings effect you need to remove the cards again 
         handView.RemoveCard(CardDrag.draggedCard.gameObject);
         Destroy(CardDrag.draggedCard.gameObject);
 
         playerScript.manaCounter -= cardData.manaCost;
 
-        if (enemyScript.enemyHP >= 100f) enemyScript.enemyHP -= cardData.cardDmg / 10f + (enemyBridgeData.BridgeEnemyATK / 2);
+        float damage = cardData.cardDmg / 10f + enemyScript.enemyID;
+        enemyScript.enemyHP -= damage;
+        enemyScript.slider.value = enemyScript.enemyHP;
 
         audioSource.clip = dropClip;
         audioSource.Play();
 
         CardEffect(cardData.cardName);
 
-        enemyScript.enemyHP -= cardData.cardDmg / 10f + (enemyBridgeData.BridgeEnemyATK / 2);
-        enemyScript.slider.value = enemyScript.enemyHP;
-       
-        handView.RemoveCard(CardDrag.draggedCard.gameObject);
-        Destroy(CardDrag.draggedCard.gameObject);
+        print(damage);
     }
 
     //Card effect functions
@@ -58,12 +55,17 @@ public class CardDropArea : MonoBehaviour
     }
     private void SpiritStorm()
     {
-        int randomMana = Random.Range(3, 5);
+        int rand = Random.Range(0, 2);
+        if(rand == 1)
+        {
+        int randomMana = Random.Range(3, 7);
         playerScript.manaCounter += randomMana;
+            
+        }
     }
     private void SpiritArrow()
     {
-        int rand = Random.Range(1, 2);
+        int rand = Random.Range(0, 2);
         float critDmg = Random.Range(5f, 7f);
         if (rand == 1) enemyScript.enemyHP -= critDmg;
         playerScript.manaCounter += 5;
@@ -91,7 +93,8 @@ public class CardDropArea : MonoBehaviour
 
     private void CrystalGolem()
     {
-        float stun = Random.Range(13, 17);
+        playerScript.manaCounter += 3;
+        float stun = Random.Range(15, 18);
         enemyScript.enemyHP -= stun;
     }
 
@@ -113,7 +116,7 @@ public class CardDropArea : MonoBehaviour
             case "Fairy wand": FairyWand(); break;
             case "Fireball" : FireBall(); break;
             case "Spirit axe": SpiritAxe(); break;
-            case "Crystal Golem": CrystalGolem(); break;
+            case "Crystal golem": CrystalGolem(); break;
             case "Dark hole" : DarkHole(); break;
         }
     }

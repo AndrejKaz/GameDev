@@ -22,14 +22,14 @@ public class TalkScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (PlayerBridgeData.Instance.Coins >= 20)
+            if (PlayerBridgeData.Instance.Coins >= 10)
             {
                 isBought = true;
                 TMP.text = "YOU GOT THE BEER BOTTOMS UP!";
                 beer.SetActive(true);
                 StartCoroutine(moreBeer());
                 coinTxt.text = "";
-                PlayerBridgeData.Instance.Coins -= 20;
+                PlayerBridgeData.Instance.Coins -= 10;
                 coinTxt.text += PlayerBridgeData.Instance.Coins;
                 PlayerBridgeData.Instance.beerCount++;
                 PlayerBridgeData.Instance.dmgBoost = PlayerBridgeData.Instance.beerCount;
@@ -38,7 +38,7 @@ public class TalkScript : MonoBehaviour
             }
             else
             {
-                TMP.text = "YOU NEED 20 COINS TO BUY A BEER.";
+                TMP.text = "YOU NEED 10 COINS TO BUY A BEER.";
             } 
         }
     }
@@ -57,7 +57,7 @@ public class TalkScript : MonoBehaviour
         if (isBought)
         {
             TMP.text = "READY FOR ANOTHER ROUND?";
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
             isBought = false;
         }
     }

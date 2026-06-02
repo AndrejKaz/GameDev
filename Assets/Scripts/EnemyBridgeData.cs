@@ -9,5 +9,4 @@ public class EnemyBridgeData : MonoBehaviour
     public float BridgeEnemyATK;
     public int BridgeUniqueID;
     public bool enemyDead;
-    
 }

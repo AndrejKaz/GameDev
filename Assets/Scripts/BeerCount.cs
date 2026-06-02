@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeerCount : MonoBehaviour
 {
@@ -8,5 +9,10 @@ public class BeerCount : MonoBehaviour
     void Awake()
     {
         beerCount.text += PlayerBridgeData.Instance.beerCount;
+
+        if(PlayerBridgeData.Instance.beerCount == 3)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 }
